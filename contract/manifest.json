@@ -1,7 +1,7 @@
 {
   "name": "tigr-asgi-contract",
-  "contract_version": "0.3.3-dev4",
-  "artifact_version": "0.3.3-dev4",
+  "contract_version": "0.3.3-dev5",
+  "artifact_version": "0.3.3-dev5",
   "serde_version": 1,
   "schema_draft": "2020-12",
   "files": [

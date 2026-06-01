@@ -6,9 +6,9 @@ Canonical npm artifact package for the Tigr ASGI contract. This package ships th
 
 | Ecosystem | Package | Version | Path | Surface files | Notes |
 | --- | --- | --- | --- | --- | --- |
-| python | `tigr-asgi-contract-artifacts` | `0.3.3-dev4` | `packages/artifacts-py` | 1 | Vendored file accessors |
-| npm | **`@tigrbljs/tigr-asgi-contract-artifacts`** | `0.3.3-dev4` | `packages/artifacts-npm` | 4 | Packaged artifact exports |
-| rust | `tigr_asgi_contract_artifacts_rs` | `0.3.3-dev4` | `packages/artifacts-rs` | 1 | Embedded artifact accessors |
+| python | `tigr-asgi-contract-artifacts` | `0.3.3-dev5` | `packages/artifacts-py` | 1 | Vendored file accessors |
+| npm | **`@tigrbljs/tigr-asgi-contract-artifacts`** | `0.3.3-dev5` | `packages/artifacts-npm` | 4 | Packaged artifact exports |
+| rust | `tigr_asgi_contract_artifacts_rs` | `0.3.3-dev5` | `packages/artifacts-rs` | 1 | Embedded artifact accessors |
 
 ## Artifact Inventory Matrix
 
@@ -129,8 +129,8 @@ Canonical npm artifact package for the Tigr ASGI contract. This package ships th
 | Field | Value |
 | --- | --- |
 | Contract name | `tigr-asgi-contract` |
-| Contract version | `0.3.3-dev4` |
-| Artifact version | `0.3.3-dev4` |
+| Contract version | `0.3.3-dev5` |
+| Artifact version | `0.3.3-dev5` |
 | Serde version | `1` |
 | Schema draft | `2020-12` |
 | Bindings | 7 |
