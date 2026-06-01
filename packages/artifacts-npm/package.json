@@ -1,6 +1,6 @@
 {
   "name": "@tigrbljs/tigr-asgi-contract-artifacts",
-  "version": "0.3.3-dev5",
+  "version": "0.3.3-dev6",
   "license": "Apache-2.0",
   "type": "module",
   "files": [
