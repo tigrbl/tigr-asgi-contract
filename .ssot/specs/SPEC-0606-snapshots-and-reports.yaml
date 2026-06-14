@@ -1,4 +1,4 @@
-schema_version: "0.1.0"
+schema_version: "0.8.0"
 kind: "spec"
 id: "spc:0606"
 number: 606
@@ -13,8 +13,6 @@ supersedes: []
 superseded_by: []
 status_notes: []
 references: []
-spec_kind: "operational"
-adr_ids: []
 body: |-
   Generated artifacts:
   - boundary snapshots
@@ -23,3 +21,5 @@ body: |-
   - validation reports
   - certification reports
   - graph exports
+spec_kind: "operational"
+adr_ids: []

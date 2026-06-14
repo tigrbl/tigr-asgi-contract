@@ -1,4 +1,4 @@
-schema_version: "0.1.0"
+schema_version: "0.8.0"
 kind: "spec"
 id: "spc:0603"
 number: 603
@@ -13,8 +13,6 @@ supersedes: []
 superseded_by: []
 status_notes: []
 references: []
-spec_kind: "normative"
-adr_ids: []
 body: |-
   Supported lifecycle stages:
   - `active`
@@ -23,3 +21,5 @@ body: |-
   - `removed`
   
   Lifecycle answers support state. It is distinct from planning horizon and implementation status.
+spec_kind: "normative"
+adr_ids: []

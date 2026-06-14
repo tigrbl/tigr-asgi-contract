@@ -1,4 +1,4 @@
-schema_version: "0.1.0"
+schema_version: "0.8.0"
 kind: "spec"
 id: "spc:0610"
 number: 610
@@ -13,14 +13,15 @@ supersedes: []
 superseded_by: []
 status_notes: []
 references: []
-spec_kind: "normative"
-adr_ids: []
 body: |-
   ## Adr Spec Contract
   
   - ADR files SHALL be stored under `.ssot/adr`.
   - SPEC files SHALL be stored under `.ssot/specs`.
   - `.ssot/registry.json` SHALL track ADR/SPEC metadata in top-level `adrs` and `specs` sections.
-  - Synced packaged documents use `origin: ssot-origin` and are immutable.
+  - Synced official packaged documents use `origin: ssot-origin` and are immutable.
+  - Synced trusted external packaged documents use `origin: extension-pack` and are immutable.
   - Repository-authored documents use `origin: repo-local` and are mutable.
   - `origin: ssot-core` is upstream-only and is not valid in operator repositories.
+spec_kind: "normative"
+adr_ids: []

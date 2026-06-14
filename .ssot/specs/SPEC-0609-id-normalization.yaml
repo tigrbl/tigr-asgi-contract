@@ -1,4 +1,4 @@
-schema_version: "0.1.0"
+schema_version: "0.8.0"
 kind: "spec"
 id: "spc:0609"
 number: 609
@@ -13,8 +13,6 @@ supersedes: []
 superseded_by: []
 status_notes: []
 references: []
-spec_kind: "normative"
-adr_ids: []
 body: |-
   Grammar:
   
@@ -32,3 +30,5 @@ body: |-
   - `rsk:`
   - `bnd:`
   - `rel:`
+spec_kind: "normative"
+adr_ids: []
