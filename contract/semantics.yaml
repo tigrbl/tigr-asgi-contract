@@ -1,0 +1,428 @@
+semantic_domains:
+  completion:
+    owner: tigr-asgi-contract
+    initial: accepted_by_runtime
+    terminal:
+      - peer_acknowledged
+      - failed_during_emit
+      - aborted_by_peer
+    states:
+      accepted_by_runtime: runtime accepted the send request and may queue it
+      queued_for_transport: send is queued for protocol transport work
+      flushed_to_transport: bytes or frames were handed to the transport boundary
+      peer_acknowledged: peer acknowledgement was observed where supported
+      failed_during_emit: send failed before the requested completion level
+      aborted_by_peer: peer aborted the unit before completion was observable
+    transitions:
+      - from: accepted_by_runtime
+        event: completion.queued
+        to: queued_for_transport
+      - from: queued_for_transport
+        event: completion.flushed
+        to: flushed_to_transport
+      - from: flushed_to_transport
+        event: completion.peer_acknowledged
+        to: peer_acknowledged
+      - from: accepted_by_runtime
+        event: completion.failed
+        to: failed_during_emit
+      - from: queued_for_transport
+        event: completion.failed
+        to: failed_during_emit
+      - from: flushed_to_transport
+        event: completion.failed
+        to: failed_during_emit
+      - from: accepted_by_runtime
+        event: completion.peer_aborted
+        to: aborted_by_peer
+      - from: queued_for_transport
+        event: completion.peer_aborted
+        to: aborted_by_peer
+      - from: flushed_to_transport
+        event: completion.peer_aborted
+        to: aborted_by_peer
+    capabilities:
+      - can_report_emit_acceptance
+      - can_report_transport_flush
+      - can_report_peer_acknowledgement
+  backpressure:
+    owner: tigr-asgi-contract
+    initial: writable
+    terminal: []
+    states:
+      writable: transport can accept more outbound work
+      congested: transport is above its soft pressure threshold
+      saturated: transport is at or beyond its hard pressure threshold
+      draining: transport is rejecting or delaying new work while queued work clears
+      resumed: transport returned below the resume threshold
+    transitions:
+      - from: writable
+        event: backpressure.congested
+        to: congested
+      - from: congested
+        event: backpressure.saturated
+        to: saturated
+      - from: saturated
+        event: backpressure.draining
+        to: draining
+      - from: draining
+        event: backpressure.resumed
+        to: resumed
+      - from: resumed
+        event: backpressure.writable
+        to: writable
+      - from: congested
+        event: backpressure.resumed
+        to: resumed
+    capabilities:
+      - can_measure_send_queue
+      - can_apply_flow_control
+      - can_resume_after_drain
+  cancellation:
+    owner: tigr-asgi-contract
+    initial: requested
+    terminal:
+      - completed
+      - ignored
+      - failed
+    states:
+      requested: cancellation was requested by a transport, runtime, or application cause
+      propagated: cancellation was delivered to the responsible execution boundary
+      acknowledged: responsible boundary acknowledged the cancellation request
+      completed: cancellation finished and cleanup ran
+      ignored: cancellation was explicitly ignored by policy
+      failed: cancellation delivery or cleanup failed
+    transitions:
+      - from: requested
+        event: cancellation.propagated
+        to: propagated
+      - from: propagated
+        event: cancellation.acknowledged
+        to: acknowledged
+      - from: acknowledged
+        event: cancellation.completed
+        to: completed
+      - from: requested
+        event: cancellation.ignored
+        to: ignored
+      - from: propagated
+        event: cancellation.failed
+        to: failed
+      - from: acknowledged
+        event: cancellation.failed
+        to: failed
+    capabilities:
+      - can_signal_transport_cancellation
+      - can_signal_application_cancellation
+      - can_bound_cancellation_cleanup
+  disconnect:
+    owner: tigr-asgi-contract
+    initial: graceful
+    terminal:
+      - graceful
+      - peer_reset
+      - transport_lost
+      - timeout
+      - protocol_error
+      - server_shutdown
+    states:
+      graceful: connection or stream closed cleanly
+      peer_reset: peer reset the stream, session, or connection
+      transport_lost: transport failed without a clean close signal
+      timeout: inactivity or operation deadline closed the transport
+      protocol_error: protocol violation forced closure
+      server_shutdown: server shutdown or worker draining closed the transport
+    transitions:
+      - from: graceful
+        event: disconnect.peer_reset
+        to: peer_reset
+      - from: graceful
+        event: disconnect.transport_lost
+        to: transport_lost
+      - from: graceful
+        event: disconnect.timeout
+        to: timeout
+      - from: graceful
+        event: disconnect.protocol_error
+        to: protocol_error
+      - from: graceful
+        event: disconnect.server_shutdown
+        to: server_shutdown
+    capabilities:
+      - can_detect_peer_close
+      - can_detect_stream_reset
+      - can_detect_transport_loss
+      - can_detect_server_shutdown
+  channel_lifecycle:
+    owner: tigr-asgi-contract
+    initial: initialized
+    terminal:
+      - closed
+      - failed
+      - lost
+    states:
+      initialized: channel identity exists but opening has not started
+      opening: channel open negotiation is in progress
+      open: channel can read and write according to protocol directionality
+      read_closed: inbound/read side is closed; outbound/write may remain usable
+      write_closed: outbound/write side is closed; inbound/read may remain usable
+      closing: channel close handshake or drain is in progress
+      closed: channel closed cleanly and no direction remains usable
+      failed: channel failed because protocol or stream semantics were violated
+      lost: channel was lost without a clean protocol close
+    transitions:
+      - from: initialized
+        event: channel.opening
+        to: opening
+      - from: opening
+        event: channel.opened
+        to: open
+      - from: open
+        event: channel.read_closed
+        to: read_closed
+      - from: open
+        event: channel.write_closed
+        to: write_closed
+      - from: open
+        event: channel.closing
+        to: closing
+      - from: open
+        event: channel.closed
+        to: closed
+      - from: open
+        event: channel.failed
+        to: failed
+      - from: open
+        event: channel.lost
+        to: lost
+      - from: read_closed
+        event: channel.write_closed
+        to: closed
+      - from: read_closed
+        event: channel.closing
+        to: closing
+      - from: read_closed
+        event: channel.failed
+        to: failed
+      - from: read_closed
+        event: channel.lost
+        to: lost
+      - from: write_closed
+        event: channel.read_closed
+        to: closed
+      - from: write_closed
+        event: channel.closing
+        to: closing
+      - from: write_closed
+        event: channel.failed
+        to: failed
+      - from: write_closed
+        event: channel.lost
+        to: lost
+      - from: closing
+        event: channel.closed
+        to: closed
+      - from: closing
+        event: channel.failed
+        to: failed
+      - from: closing
+        event: channel.lost
+        to: lost
+    capabilities:
+      - can_report_channel_open
+      - can_report_read_closed
+      - can_report_write_closed
+      - can_report_channel_closing
+      - can_report_channel_loss
+    rfc_targets:
+      http2:
+        rfc: RFC 9113
+        sections:
+          - "5.1"
+          - "5.2"
+          - "6.4"
+          - "6.8"
+      http3:
+        rfc: RFC 9114
+        sections:
+          - "4.1"
+          - "4.1.1"
+          - "5.2"
+          - "6.1"
+      quic:
+        rfc: RFC 9000
+        sections:
+          - "3"
+          - "3.5"
+          - "10"
+          - "19.4"
+          - "19.5"
+      websocket_http2:
+        rfc: RFC 8441
+        applies_when: WebSocket tunnel lifecycle is projected over an HTTP/2 stream
+      websocket_http3:
+        rfc: RFC 9220
+        applies_when: WebSocket tunnel lifecycle is projected over an HTTP/3 stream
+    protocol_projection:
+      - protocol: http2
+        rfc: RFC 9113
+        section: "5.1"
+        term: half-closed(remote)
+        event: channel.read_closed
+        state: read_closed
+        direction: read
+      - protocol: http2
+        rfc: RFC 9113
+        section: "5.1"
+        term: half-closed(local)
+        event: channel.write_closed
+        state: write_closed
+        direction: write
+      - protocol: http2
+        rfc: RFC 9113
+        section: "6.4"
+        term: RST_STREAM
+        event: channel.lost
+        state: lost
+        direction: bidirectional
+      - protocol: http2
+        rfc: RFC 9113
+        section: "6.8"
+        term: GOAWAY
+        event: channel.closing
+        state: closing
+        direction: connection
+      - protocol: http3
+        rfc: RFC 9114
+        section: "4.1"
+        term: request stream receive closed
+        event: channel.read_closed
+        state: read_closed
+        direction: read
+      - protocol: http3
+        rfc: RFC 9114
+        section: "4.1"
+        term: request stream send closed
+        event: channel.write_closed
+        state: write_closed
+        direction: write
+      - protocol: http3
+        rfc: RFC 9114
+        section: "4.1.1"
+        term: request cancellation
+        event: channel.lost
+        state: lost
+        direction: bidirectional
+      - protocol: http3
+        rfc: RFC 9114
+        section: "5.2"
+        term: GOAWAY
+        event: channel.closing
+        state: closing
+        direction: connection
+      - protocol: quic
+        rfc: RFC 9000
+        section: "3"
+        term: receive stream closed
+        event: channel.read_closed
+        state: read_closed
+        direction: read
+      - protocol: quic
+        rfc: RFC 9000
+        section: "3"
+        term: send stream closed
+        event: channel.write_closed
+        state: write_closed
+        direction: write
+      - protocol: quic
+        rfc: RFC 9000
+        section: "19.4"
+        term: RESET_STREAM
+        event: channel.write_closed
+        state: write_closed
+        direction: write
+      - protocol: quic
+        rfc: RFC 9000
+        section: "19.5"
+        term: STOP_SENDING
+        event: channel.write_closed
+        state: write_closed
+        direction: write
+      - protocol: quic
+        rfc: RFC 9000
+        section: "10"
+        term: connection close
+        event: channel.closing
+        state: closing
+        direction: connection
+      - protocol: websocket_http2
+        rfc: RFC 8441
+        section: extended-connect
+        term: tunnel stream ended
+        event: channel.closing
+        state: closing
+        direction: bidirectional
+      - protocol: websocket_http3
+        rfc: RFC 9220
+        section: extended-connect
+        term: tunnel stream ended
+        event: channel.closing
+        state: closing
+        direction: bidirectional
+    capability_effects:
+      initialized:
+        can_read: false
+        can_write: false
+        can_drain: false
+        terminal: false
+      opening:
+        can_read: false
+        can_write: false
+        can_drain: false
+        terminal: false
+      open:
+        can_read: true
+        can_write: true
+        can_drain: false
+        terminal: false
+      read_closed:
+        can_read: false
+        can_write: true
+        can_drain: true
+        terminal: false
+      write_closed:
+        can_read: true
+        can_write: false
+        can_drain: true
+        terminal: false
+      closing:
+        can_read: false
+        can_write: false
+        can_drain: true
+        terminal: false
+      closed:
+        can_read: false
+        can_write: false
+        can_drain: false
+        terminal: true
+      failed:
+        can_read: false
+        can_write: false
+        can_drain: false
+        terminal: true
+      lost:
+        can_read: false
+        can_write: false
+        can_drain: false
+        terminal: true
+    compatibility:
+      - state: read_closed
+        rule: inbound input is complete and application work may continue when enough input exists
+      - state: write_closed
+        rule: outbound completion cannot advance to new transport writes
+      - state: closing
+        rule: new outbound sends are suppressed while drain policy is evaluated
+      - state: failed
+        rule: may imply disconnect and cancellation depending on source
+      - state: lost
+        rule: implies disconnect and may request cancellation

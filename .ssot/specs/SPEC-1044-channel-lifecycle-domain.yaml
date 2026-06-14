@@ -1,0 +1,24 @@
+schema_version: "0.2.0"
+kind: "spec"
+id: "spc:1044"
+number: 1044
+slug: "channel-lifecycle-domain"
+title: "Channel lifecycle semantic domain"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "This SPEC defines channel_lifecycle states initialized, opening, open, read_closed, write_closed, closing, closed, failed, and lost. It defines legal transitions, lifecycle events, readable and writable capability effects, terminal states, and cross-domain compatibility rules. It also defines the RFC target projection map for HTTP/2 RFC 9113 sections 5.1, 5.2, 6.4, and 6.8, HTTP/3 RFC 9114 sections 4.1, 4.1.1, 5.2, and 6.1, QUIC RFC 9000 sections 3, 3.5, 10, 19.4, and 19.5, plus WebSocket tunnel mappings from RFC 8441 and RFC 9220 when applicable. read_closed does not imply failure. write_closed constrains completion. failed and lost may produce disconnect and cancellation observations."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    at: "2026-06-14T07:38:51Z"
+    note: "Accepted for contract-owned channel lifecycle semantics."
+    status: "accepted"
+references: []
+body: |-
+  This SPEC defines channel_lifecycle states initialized, opening, open, read_closed, write_closed, closing, closed, failed, and lost. It defines legal transitions, lifecycle events, readable and writable capability effects, terminal states, and cross-domain compatibility rules. It also defines the RFC target projection map for HTTP/2 RFC 9113 sections 5.1, 5.2, 6.4, and 6.8, HTTP/3 RFC 9114 sections 4.1, 4.1.1, 5.2, and 6.1, QUIC RFC 9000 sections 3, 3.5, 10, 19.4, and 19.5, plus WebSocket tunnel mappings from RFC 8441 and RFC 9220 when applicable. read_closed does not imply failure. write_closed constrains completion. failed and lost may produce disconnect and cancellation observations.
+spec_kind: "normative"
+adr_ids:
+  - "adr:1038"

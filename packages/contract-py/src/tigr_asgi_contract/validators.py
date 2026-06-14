@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Any
-from .registry import AUTOMATA, BINDING_FAMILY_MATRIX, FAMILY_SUBEVENT_MATRIX, BINDING_SUBEVENT_MATRIX, PROTOCOLS, EVENT_CLASSIFICATIONS, FRAMINGS
+from .registry import AUTOMATA, BINDING_FAMILY_MATRIX, FAMILY_SUBEVENT_MATRIX, BINDING_SUBEVENT_MATRIX, PROTOCOLS, EVENT_CLASSIFICATIONS, FRAMINGS, SEMANTIC_DOMAINS
 from .models import EventClassification
 
 LEGALITY_CODES = frozenset({"R", "O", "D", "F"})
@@ -33,6 +33,49 @@ def _has_capability(scope: Any, gate: str) -> bool:
     if isinstance(wt, dict):
         return bool(wt.get(gate))
     return bool(getattr(wt, gate, False))
+
+
+def semantic_domain(domain: str) -> dict[str, Any]:
+    return SEMANTIC_DOMAINS[domain]
+
+
+def semantic_states(domain: str) -> tuple[str, ...]:
+    return tuple(SEMANTIC_DOMAINS[domain]["states"])
+
+
+def semantic_events(domain: str) -> tuple[str, ...]:
+    return tuple(row["event"] for row in SEMANTIC_DOMAINS[domain]["transitions"])
+
+
+def semantic_capabilities(domain: str) -> tuple[str, ...]:
+    return tuple(SEMANTIC_DOMAINS[domain].get("capabilities", ()))
+
+
+def semantic_transition_target(domain: str, state: str, event: str) -> str:
+    for row in SEMANTIC_DOMAINS[domain]["transitions"]:
+        if row["from"] == state and row["event"] == event:
+            return row["to"]
+    raise ValueError(f"illegal semantic transition for {domain}: {state} + {event}")
+
+
+def validate_semantic_transition(domain: str, state: str, event: str) -> bool:
+    try:
+        semantic_transition_target(domain, state, event)
+    except (KeyError, ValueError):
+        return False
+    return True
+
+
+def validate_semantic_sequence(domain: str, events: list[str]) -> bool:
+    spec = SEMANTIC_DOMAINS[domain]
+    state = spec["initial"]
+    for event in events:
+        try:
+            state = semantic_transition_target(domain, state, event)
+        except ValueError:
+            return False
+    terminals = set(spec.get("terminal", ()))
+    return not terminals or state in terminals or bool(events)
 
 
 def binding_supports_family(binding: str, family: str) -> bool:

@@ -1,4 +1,8 @@
 levels:
   accepted_by_runtime: send accepted by runtime/output queue
+  queued_for_transport: send queued for transport scheduling
   flushed_to_transport: send flushed to transport boundary
+  peer_acknowledged: peer acknowledged receipt where protocol supports acknowledgement
+  failed_during_emit: emit failed before the requested semantic completion
+  aborted_by_peer: peer aborted the operation before completion could be observed
 default: flushed_to_transport

@@ -145,6 +145,7 @@ def contract_data() -> dict[str, Any]:
         "all_subevents": all_subevents,
         "capabilities": load_yaml("capabilities.yaml")["fields"],
         "completion": load_yaml("completion.yaml"),
+        "semantic_domains": load_yaml("semantics.yaml")["semantic_domains"],
         "compatibility": load_yaml("compatibility.yaml"),
         "ids": load_yaml("ids.yaml")["fields"],
         "binding_family": load_yaml("legality/binding_family.yaml")["binding_family"],
