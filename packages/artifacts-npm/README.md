@@ -18,8 +18,8 @@ Canonical npm artifact package for the Tigr ASGI contract. This package ships th
 | `bindings.yaml` | registry | `0a08946ef696` |
 | `capabilities.yaml` | registry | `8ca0167eccbc` |
 | `channels.yaml` | registry | `66a6a3b36551` |
-| `compatibility.yaml` | registry | `d90c5c30ab2c` |
-| `completion.yaml` | registry | `036f6b37c6bc` |
+| `compatibility.yaml` | registry | `fc4de10ee312` |
+| `completion.yaml` | registry | `a1b38e52c5e8` |
 | `directions.yaml` | registry | `5b3e8f536f80` |
 | `event_classification.yaml` | registry | `4d3e87cd2ce5` |
 | `exchanges.yaml` | registry | `efc32610dfb1` |
@@ -121,6 +121,7 @@ Canonical npm artifact package for the Tigr ASGI contract. This package ships th
 | `schemas/websocket.schema.json` | schema | `b4e38fad362c` |
 | `schemas/webtransport.schema.json` | schema | `e6f9300bfe82` |
 | `scope_types.yaml` | registry | `620b4d20180e` |
+| `semantics.yaml` | registry | `0dd1193270b0` |
 | `subevents.yaml` | registry | `3f5432b79a57` |
 | `surfaces.yaml` | registry | `7bae2973aad0` |
 
@@ -165,7 +166,7 @@ Canonical npm artifact package for the Tigr ASGI contract. This package ships th
 | Compatibility field | Value | Meaning | Source |
 | --- | --- | --- | --- |
 | `contract_name` | `tigr-asgi-contract` | Canonical contract identifier | `contract/compatibility.yaml` |
-| `contract_version` | `0.1.2` | Published contract version | `contract/compatibility.yaml` |
+| `contract_version` | `0.3.3` | Published contract version | `contract/compatibility.yaml` |
 | `serde_version` | `1` | Serialization surface version | `contract/compatibility.yaml` |
 | `schema_draft` | `2020-12` | JSON Schema draft level | `contract/compatibility.yaml` |
 
@@ -174,7 +175,11 @@ Canonical npm artifact package for the Tigr ASGI contract. This package ships th
 | Completion level | Meaning | Default | Source |
 | --- | --- | --- | --- |
 | `accepted_by_runtime` | send accepted by runtime/output queue | no | `contract/completion.yaml` |
+| `queued_for_transport` | send queued for transport scheduling | no | `contract/completion.yaml` |
 | `flushed_to_transport` | send flushed to transport boundary | yes | `contract/completion.yaml` |
+| `peer_acknowledged` | peer acknowledged receipt where protocol supports acknowledgement | no | `contract/completion.yaml` |
+| `failed_during_emit` | emit failed before the requested semantic completion | no | `contract/completion.yaml` |
+| `aborted_by_peer` | peer aborted the operation before completion could be observed | no | `contract/completion.yaml` |
 
 ## Event Matrix
 

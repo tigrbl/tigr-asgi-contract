@@ -23,6 +23,7 @@ def sync_package_licenses() -> None:
         (package_dir / "LICENSE").write_bytes(license_bytes)
 
 def main() -> None:
+    run("tools/build_compatibility.py")
     run("tools/build_manifest.py")
     run("tools/build_checksums.py")
     run("generators/python/generate.py")

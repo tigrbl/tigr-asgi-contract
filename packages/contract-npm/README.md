@@ -6,7 +6,7 @@ Generated TypeScript and TSX contract package for the Tigr ASGI contract. It is 
 
 | Ecosystem | Package | Version | Path | Surface files | Notes |
 | --- | --- | --- | --- | --- | --- |
-| python | `tigr-asgi-contract` | `0.3.3` | `packages/contract-py` | 22 | Enums, models, validators |
+| python | `tigr-asgi-contract` | `0.3.3` | `packages/contract-py` | 23 | Enums, models, validators |
 | npm | **`@tigrbljs/tigr-asgi-contract`** | `0.3.3` | `packages/contract-npm` | 23 | TypeScript and TSX surfaces |
 | rust | `tigr_asgi_contract_rs` | `0.3.3` | `packages/contract-rs` | 20 | Serde-friendly contract surfaces |
 
@@ -79,7 +79,7 @@ Generated TypeScript and TSX contract package for the Tigr ASGI contract. It is 
 | Compatibility field | Value | Meaning | Source |
 | --- | --- | --- | --- |
 | `contract_name` | `tigr-asgi-contract` | Canonical contract identifier | `contract/compatibility.yaml` |
-| `contract_version` | `0.1.2` | Published contract version | `contract/compatibility.yaml` |
+| `contract_version` | `0.3.3` | Published contract version | `contract/compatibility.yaml` |
 | `serde_version` | `1` | Serialization surface version | `contract/compatibility.yaml` |
 | `schema_draft` | `2020-12` | JSON Schema draft level | `contract/compatibility.yaml` |
 
@@ -88,7 +88,11 @@ Generated TypeScript and TSX contract package for the Tigr ASGI contract. It is 
 | Completion level | Meaning | Default | Source |
 | --- | --- | --- | --- |
 | `accepted_by_runtime` | send accepted by runtime/output queue | no | `contract/completion.yaml` |
+| `queued_for_transport` | send queued for transport scheduling | no | `contract/completion.yaml` |
 | `flushed_to_transport` | send flushed to transport boundary | yes | `contract/completion.yaml` |
+| `peer_acknowledged` | peer acknowledged receipt where protocol supports acknowledgement | no | `contract/completion.yaml` |
+| `failed_during_emit` | emit failed before the requested semantic completion | no | `contract/completion.yaml` |
+| `aborted_by_peer` | peer aborted the operation before completion could be observed | no | `contract/completion.yaml` |
 
 ## Event Matrix
 

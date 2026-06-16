@@ -23,11 +23,11 @@
     },
     {
       "path": "compatibility.yaml",
-      "sha256": "d90c5c30ab2ce7a2e74c8f029462c8ab794fed22e87184da30ad8b4d1cb1c233"
+      "sha256": "fc4de10ee312dd687cdd38b8bfc671633a800556d47adcb393fe14e001429e85"
     },
     {
       "path": "completion.yaml",
-      "sha256": "036f6b37c6bc9881705bd59b7cce18a43b8a0cc4095e68bc16e4088ca628f1ce"
+      "sha256": "a1b38e52c5e8cd95cfc3e4506080c5ba7850fa2a82c71af3de99061574794684"
     },
     {
       "path": "directions.yaml",
@@ -432,6 +432,10 @@
     {
       "path": "scope_types.yaml",
       "sha256": "620b4d20180eae14aecbc5ae0fcf9f1229edbbbe6a77d4678a8f1d14d98ef995"
+    },
+    {
+      "path": "semantics.yaml",
+      "sha256": "0dd1193270b0eb354be3760b4433f94eb8bbcd24992a817796189fb6f99d2801"
     },
     {
       "path": "subevents.yaml",
