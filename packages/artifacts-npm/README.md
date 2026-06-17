@@ -37,7 +37,7 @@ Canonical npm artifact package for the Tigr ASGI contract. This package ships th
 | `schemas/capabilities.schema.json` | schema | `93c9734265ef` |
 | `schemas/compatibility.schema.json` | schema | `309ba3093d34` |
 | `schemas/completion.schema.json` | schema | `26e6082df0cd` |
-| `schemas/event.schema.json` | schema | `2c4b0d6a71b8` |
+| `schemas/event.schema.json` | schema | `5b6bcbe8e53a` |
 | `schemas/events/http.disconnect.schema.json` | schema | `c8e0ef15a51a` |
 | `schemas/events/http.request.schema.json` | schema | `5dc3e9637842` |
 | `schemas/events/http.response.body.schema.json` | schema | `aea43c0ae295` |
@@ -49,6 +49,9 @@ Canonical npm artifact package for the Tigr ASGI contract. This package ships th
 | `schemas/events/lifespan.startup.complete.schema.json` | schema | `f7802854affa` |
 | `schemas/events/lifespan.startup.failed.schema.json` | schema | `0de2facf072d` |
 | `schemas/events/lifespan.startup.schema.json` | schema | `77cea05772ad` |
+| `schemas/events/stream.resume.accept.schema.json` | schema | `0a601bcc0345` |
+| `schemas/events/stream.resume.reject.schema.json` | schema | `05b65ef2c460` |
+| `schemas/events/stream.resume.request.schema.json` | schema | `9afe3c7aca79` |
 | `schemas/events/transport.emit.complete.schema.json` | schema | `154aad5d68c0` |
 | `schemas/events/transport.emit.failed.schema.json` | schema | `d501f202757c` |
 | `schemas/events/websocket.accept.schema.json` | schema | `eb7eceeb6aeb` |
@@ -121,7 +124,7 @@ Canonical npm artifact package for the Tigr ASGI contract. This package ships th
 | `schemas/websocket.schema.json` | schema | `b4e38fad362c` |
 | `schemas/webtransport.schema.json` | schema | `e6f9300bfe82` |
 | `scope_types.yaml` | registry | `620b4d20180e` |
-| `semantics.yaml` | registry | `0dd1193270b0` |
+| `semantics.yaml` | registry | `e3bc8fe532b8` |
 | `subevents.yaml` | registry | `3f5432b79a57` |
 | `surfaces.yaml` | registry | `7bae2973aad0` |
 
@@ -138,7 +141,7 @@ Canonical npm artifact package for the Tigr ASGI contract. This package ships th
 | Families | 6 |
 | Subevents | 50 |
 | Scope types | 4 |
-| Event types | 30 |
+| Event types | 33 |
 
 ## Scope Type Matrix
 
@@ -207,6 +210,9 @@ Canonical npm artifact package for the Tigr ASGI contract. This package ships th
 | `webtransport.datagram.send` | `webtransport` | `webtransport` | `datagram.out` | Outbound WebTransport datagram |
 | `webtransport.disconnect` | `webtransport` | `webtransport` | `session.disconnect` | WebTransport disconnect signal |
 | `webtransport.close` | `webtransport` | `webtransport` | `session.close`, `session.reject` | WebTransport session close event |
+| `stream.resume.request` | `http, websocket, webtransport` | - | - |  |
+| `stream.resume.accept` | `http, websocket, webtransport` | - | - |  |
+| `stream.resume.reject` | `http, websocket, webtransport` | - | - |  |
 | `lifespan.startup` | `lifespan` | - | `lifespan.startup` | ASGI lifespan startup receive event |
 | `lifespan.startup.complete` | `lifespan` | - | `lifespan.startup_complete` | ASGI lifespan startup completion send event |
 | `lifespan.startup.failed` | `lifespan` | - | `lifespan.startup_failed` | ASGI lifespan startup failure send event |

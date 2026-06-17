@@ -1650,4 +1650,84 @@ SEMANTIC_DOMAINS = {'backpressure': {'capabilities': ['can_measure_send_queue',
                                  'to': 'protocol_error'},
                                 {'event': 'disconnect.server_shutdown',
                                  'from': 'graceful',
-                                 'to': 'server_shutdown'}]}}
+                                 'to': 'server_shutdown'}]},
+ 'stream_resume': {'capabilities': ['can_validate_resume_token',
+                                    'can_bind_resume_identity',
+                                    'can_replay_buffered_units',
+                                    'can_reject_stale_resume'],
+                   'initial': 'idle',
+                   'owner': 'tigr-asgi-contract',
+                   'rfc_targets': {'http1': {'applies_when': 'application '
+                                                             'retry or range '
+                                                             'semantics are '
+                                                             'projected over '
+                                                             'HTTP/1.1',
+                                             'rfc': 'RFC 9112'},
+                                   'http2': {'applies_when': 'application '
+                                                             'resume is '
+                                                             'projected above '
+                                                             'connection-local '
+                                                             'HTTP/2 stream '
+                                                             'ids',
+                                             'rfc': 'RFC 9113'},
+                                   'http3': {'applies_when': 'application '
+                                                             'resume is '
+                                                             'projected above '
+                                                             'HTTP/3 request '
+                                                             'stream loss',
+                                             'rfc': 'RFC 9114'},
+                                   'quic': {'applies_when': 'application '
+                                                            'resume is '
+                                                            'distinct from '
+                                                            'QUIC connection '
+                                                            'resumption and '
+                                                            'stream ids',
+                                            'rfc': 'RFC 9000'},
+                                   'websocket': {'applies_when': 'application '
+                                                                 'message '
+                                                                 'replay is '
+                                                                 'projected '
+                                                                 'above a new '
+                                                                 'WebSocket '
+                                                                 'connection',
+                                                 'rfc': 'RFC 6455'}},
+                   'states': {'accepted': 'the runtime accepted the resume '
+                                          'token and identity',
+                              'expired': 'resume state existed but aged out '
+                                         'before it could be accepted',
+                              'idle': 'no resume attempt is active for the '
+                                      'stream identity',
+                              'rejected': 'resume was denied by policy, '
+                                          'identity mismatch, or unavailable '
+                                          'state',
+                              'replaying': 'buffered units are being replayed '
+                                           'to restore stream position',
+                              'requested': 'a client or peer requested resume '
+                                           'for a prior stream identity',
+                              'resumed': 'resume completed and the stream may '
+                                         'continue from the accepted offset'},
+                   'terminal': ['resumed', 'rejected', 'expired'],
+                   'transitions': [{'event': 'stream_resume.requested',
+                                    'from': 'idle',
+                                    'to': 'requested'},
+                                   {'event': 'stream_resume.accepted',
+                                    'from': 'requested',
+                                    'to': 'accepted'},
+                                   {'event': 'stream_resume.rejected',
+                                    'from': 'requested',
+                                    'to': 'rejected'},
+                                   {'event': 'stream_resume.expired',
+                                    'from': 'requested',
+                                    'to': 'expired'},
+                                   {'event': 'stream_resume.replaying',
+                                    'from': 'accepted',
+                                    'to': 'replaying'},
+                                   {'event': 'stream_resume.completed',
+                                    'from': 'accepted',
+                                    'to': 'resumed'},
+                                   {'event': 'stream_resume.completed',
+                                    'from': 'replaying',
+                                    'to': 'resumed'},
+                                   {'event': 'stream_resume.rejected',
+                                    'from': 'replaying',
+                                    'to': 'rejected'}]}}

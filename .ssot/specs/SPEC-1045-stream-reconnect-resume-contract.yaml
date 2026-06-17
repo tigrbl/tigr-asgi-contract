@@ -1,0 +1,20 @@
+schema_version: "0.8.0"
+kind: "spec"
+id: "spc:1045"
+number: 1045
+slug: "stream-reconnect-resume-contract"
+title: "Stream reconnect resume contract"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Defines token-bound stream resume request, accept, and reject semantics above protocol-local stream identities for HTTP stream, SSE, WebSocket, and WebTransport surfaces."
+supersedes: []
+superseded_by: []
+status_notes: []
+references: []
+body: |-
+  Defines token-bound stream resume request, accept, and reject semantics above protocol-local stream identities for HTTP stream, SSE, WebSocket, and WebTransport surfaces.
+spec_kind: "normative"
+adr_ids:
+  - "adr:1039"

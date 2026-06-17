@@ -99,7 +99,7 @@
     },
     {
       "path": "schemas/event.schema.json",
-      "sha256": "2c4b0d6a71b8568477b4f687979c9e49bc6a3845803e70183a2c4a7e0d448314"
+      "sha256": "5b6bcbe8e53ad9bc4f14c18e7886ab1bc280c8e3ecae08f38c78ad4f5debe0ba"
     },
     {
       "path": "schemas/events/http.disconnect.schema.json",
@@ -144,6 +144,18 @@
     {
       "path": "schemas/events/lifespan.startup.schema.json",
       "sha256": "77cea05772ad5b448c1f5d90a05a1da12f85f75b29d44d893be929c6e1d18045"
+    },
+    {
+      "path": "schemas/events/stream.resume.accept.schema.json",
+      "sha256": "0a601bcc0345264bae1b10e11efae22003fd6db4b279403c6b5e684167d08ea8"
+    },
+    {
+      "path": "schemas/events/stream.resume.reject.schema.json",
+      "sha256": "05b65ef2c4608ba16678c015a98e7c6e09414b2f9cb4628a65202bd52c8495d3"
+    },
+    {
+      "path": "schemas/events/stream.resume.request.schema.json",
+      "sha256": "9afe3c7aca792b10755d4ebc88a14dd54923b0bcba64156b2be24be0ae141c26"
     },
     {
       "path": "schemas/events/transport.emit.complete.schema.json",
@@ -435,7 +447,7 @@
     },
     {
       "path": "semantics.yaml",
-      "sha256": "0dd1193270b0eb354be3760b4433f94eb8bbcd24992a817796189fb6f99d2801"
+      "sha256": "e3bc8fe532b8da2cacfb767cc516f0ddf9cb35fccf492cb43d46d703bd6bdbbd"
     },
     {
       "path": "subevents.yaml",

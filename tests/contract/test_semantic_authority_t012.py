@@ -20,6 +20,7 @@ def test_t0_semantic_domains_are_canonical_and_owned_by_contract() -> None:
         "channel_lifecycle",
         "completion",
         "disconnect",
+        "stream_resume",
     }
     assert all(domain["owner"] == "tigr-asgi-contract" for domain in SEMANTIC_DOMAINS.values())
     assert set(semantic_states("completion")) == {
@@ -61,6 +62,15 @@ def test_t1_semantic_transition_validation_accepts_legal_sequences() -> None:
         ],
     )
     assert semantic_transition_target("disconnect", "graceful", "disconnect.peer_reset") == "peer_reset"
+    assert validate_semantic_sequence(
+        "stream_resume",
+        [
+            "stream_resume.requested",
+            "stream_resume.accepted",
+            "stream_resume.replaying",
+            "stream_resume.completed",
+        ],
+    )
 
 
 @pytest.mark.parametrize(
@@ -70,6 +80,7 @@ def test_t1_semantic_transition_validation_accepts_legal_sequences() -> None:
         ("backpressure", "writable", "cancellation.propagated"),
         ("cancellation", "requested", "completion.flushed"),
         ("disconnect", "peer_reset", "disconnect.timeout"),
+        ("stream_resume", "idle", "backpressure.resumed"),
     ],
 )
 def test_t2_semantic_transition_validation_rejects_cross_domain_or_terminal_misuse(
@@ -85,3 +96,4 @@ def test_t2_semantic_capabilities_express_required_runtime_observability() -> No
     assert "can_apply_flow_control" in semantic_capabilities("backpressure")
     assert "can_signal_application_cancellation" in semantic_capabilities("cancellation")
     assert "can_detect_stream_reset" in semantic_capabilities("disconnect")
+    assert "can_validate_resume_token" in semantic_capabilities("stream_resume")

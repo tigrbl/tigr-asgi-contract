@@ -1,0 +1,61 @@
+{
+  "$id": "https://tigr.dev/asgi-contract/schemas/events/stream.resume.request.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "not": {
+    "required": [
+      "subsurface"
+    ]
+  },
+  "properties": {
+    "binding": {
+      "enum": [
+        "http.stream",
+        "http.sse",
+        "ws",
+        "wss",
+        "webtransport"
+      ]
+    },
+    "client_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "requested_offset": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "resume_token": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "stream_id": {
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "minLength": 1,
+          "type": "string"
+        }
+      ]
+    },
+    "type": {
+      "const": "stream.resume.request"
+    }
+  },
+  "required": [
+    "type",
+    "resume_token",
+    "client_id",
+    "session_id",
+    "stream_id",
+    "binding"
+  ],
+  "title": "stream.resume.request event payload",
+  "type": "object"
+}

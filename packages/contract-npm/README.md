@@ -51,7 +51,7 @@ Generated TypeScript and TSX contract package for the Tigr ASGI contract. It is 
 | Families | 6 |
 | Subevents | 50 |
 | Scope types | 4 |
-| Event types | 30 |
+| Event types | 33 |
 
 ## Scope Type Matrix
 
@@ -120,6 +120,9 @@ Generated TypeScript and TSX contract package for the Tigr ASGI contract. It is 
 | `webtransport.datagram.send` | `webtransport` | `webtransport` | `datagram.out` | Outbound WebTransport datagram |
 | `webtransport.disconnect` | `webtransport` | `webtransport` | `session.disconnect` | WebTransport disconnect signal |
 | `webtransport.close` | `webtransport` | `webtransport` | `session.close`, `session.reject` | WebTransport session close event |
+| `stream.resume.request` | `http, websocket, webtransport` | - | - |  |
+| `stream.resume.accept` | `http, websocket, webtransport` | - | - |  |
+| `stream.resume.reject` | `http, websocket, webtransport` | - | - |  |
 | `lifespan.startup` | `lifespan` | - | `lifespan.startup` | ASGI lifespan startup receive event |
 | `lifespan.startup.complete` | `lifespan` | - | `lifespan.startup_complete` | ASGI lifespan startup completion send event |
 | `lifespan.startup.failed` | `lifespan` | - | `lifespan.startup_failed` | ASGI lifespan startup failure send event |

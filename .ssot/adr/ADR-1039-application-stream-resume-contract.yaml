@@ -1,0 +1,17 @@
+schema_version: "0.8.0"
+kind: "adr"
+id: "adr:1039"
+number: 1039
+slug: "application-stream-resume-contract"
+title: "Application stream resume contract"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Decision: stream reconnect and resume is a token-bound application contract above protocol-local stream identity. QUIC connection resumption and backpressure resume are distinct concerns."
+supersedes: []
+superseded_by: []
+status_notes: []
+references: []
+body: |-
+  Decision: stream reconnect and resume is a token-bound application contract above protocol-local stream identity. QUIC connection resumption and backpressure resume are distinct concerns.

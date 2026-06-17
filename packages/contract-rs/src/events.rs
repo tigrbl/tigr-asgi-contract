@@ -46,6 +46,12 @@ pub enum TransportEventType {
     WebtransportDisconnect,
     #[serde(rename = "webtransport.close")]
     WebtransportClose,
+    #[serde(rename = "stream.resume.request")]
+    StreamResumeRequest,
+    #[serde(rename = "stream.resume.accept")]
+    StreamResumeAccept,
+    #[serde(rename = "stream.resume.reject")]
+    StreamResumeReject,
     #[serde(rename = "lifespan.startup")]
     LifespanStartup,
     #[serde(rename = "lifespan.startup.complete")]

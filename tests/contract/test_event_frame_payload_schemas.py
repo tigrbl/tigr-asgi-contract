@@ -63,6 +63,43 @@ def test_representative_event_payload_schema_validation() -> None:
             "webtransport.datagram.send",
             {"type": "webtransport.datagram.send", "datagram_id": "dg-1", "bytes": "abc"},
         ),
+        (
+            "stream.resume.request",
+            {
+                "type": "stream.resume.request",
+                "resume_token": "rt-1",
+                "client_id": "client-a",
+                "session_id": "session-a",
+                "stream_id": "stream-a",
+                "binding": "webtransport",
+                "requested_offset": 2,
+            },
+        ),
+        (
+            "stream.resume.accept",
+            {
+                "type": "stream.resume.accept",
+                "resume_token": "rt-1",
+                "client_id": "client-a",
+                "session_id": "session-a",
+                "stream_id": "stream-a",
+                "binding": "webtransport",
+                "accepted_offset": 2,
+                "replay_count": 1,
+            },
+        ),
+        (
+            "stream.resume.reject",
+            {
+                "type": "stream.resume.reject",
+                "resume_token": "rt-1",
+                "client_id": "client-a",
+                "session_id": "session-a",
+                "stream_id": "stream-a",
+                "binding": "webtransport",
+                "reason": "expired",
+            },
+        ),
         ("lifespan.startup.failed", {"type": "lifespan.startup.failed", "message": "failed"}),
     ]
     for event_type, payload in cases:
