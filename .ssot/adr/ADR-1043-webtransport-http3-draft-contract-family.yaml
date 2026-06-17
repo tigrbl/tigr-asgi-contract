@@ -1,0 +1,33 @@
+schema_version: "0.8.0"
+kind: "adr"
+id: "adr:1043"
+number: 1043
+slug: "webtransport-http3-draft-contract-family"
+title: "WebTransport over HTTP/3 is a draft-target contract family"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Decision: tigr-asgi-contracts models WebTransport over HTTP/3 as a separate draft-target session, stream, and datagram contract family, not as generic HTTP/3 or WebSocket behavior."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    status: "accepted"
+    note: "Accepted to govern the stack boundary before per-stack specs and features are added."
+    at: "2026-06-17T12:41:23Z"
+references: []
+body: |-
+  Decision: tigr-asgi-contracts models WebTransport over HTTP/3 as a separate draft-target session, stream, and datagram contract family, not as generic HTTP/3 or WebSocket behavior.
+  
+  Owned boundary:
+  - The contract may define WebTransport session, bidirectional stream, unidirectional stream, datagram, and close/reset/stop-sending event shapes.
+  - The contract must mark this stack against the active IETF draft target until the draft becomes an RFC.
+  
+  Peer inputs:
+  - Tigrcorn owns the HTTP/3 and QUIC runtime carrier.
+  - Tigrbl owns binding projection onto WebTransport lanes.
+  
+  Forbidden claims:
+  - WebTransport contract rows must not be used as WebSocket rows.
+  - Plain HTTP/3 rows must not imply WebTransport lane support.

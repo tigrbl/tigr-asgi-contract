@@ -1,0 +1,33 @@
+schema_version: "0.8.0"
+kind: "adr"
+id: "adr:1044"
+number: 1044
+slug: "webtransport-http2-draft-fallback-contract-family"
+title: "WebTransport over HTTP/2 is a draft-target fallback contract family"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Decision: tigr-asgi-contracts models WebTransport over HTTP/2 as a separate draft-target fallback family with capsule-carrier constraints, not as QUIC-native WebTransport."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    status: "accepted"
+    note: "Accepted to govern the stack boundary before per-stack specs and features are added."
+    at: "2026-06-17T12:41:24Z"
+references: []
+body: |-
+  Decision: tigr-asgi-contracts models WebTransport over HTTP/2 as a separate draft-target fallback family with capsule-carrier constraints, not as QUIC-native WebTransport.
+  
+  Owned boundary:
+  - The contract may identify WebTransport-over-H2 capability and event shapes separately from WebTransport-over-H3.
+  - The contract must preserve fallback-carrier status and avoid QUIC-native stream-ID assumptions.
+  
+  Peer inputs:
+  - Tigrcorn owns the HTTP/2 capsule/fallback runtime behavior.
+  - Tigrbl owns capability-gated binding projection.
+  
+  Forbidden claims:
+  - WebTransport-over-H2 rows must not claim QUIC datagram or QUIC stream-ID behavior.
+  - WebTransport-over-H2 rows must not be flattened into WebTransport-over-H3 certification claims.

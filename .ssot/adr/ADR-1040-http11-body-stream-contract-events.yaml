@@ -1,0 +1,38 @@
+schema_version: "0.8.0"
+kind: "adr"
+id: "adr:1040"
+number: 1040
+slug: "http11-body-stream-contract-events"
+title: "HTTP/1.1 body streams are contract body events"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Decision: tigr-asgi-contracts models HTTP/1.1 streaming as request and response body event flow under the HTTP scope, not as native multiplexed transport streams."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    at: "2026-06-17T12:31:33Z"
+    note: "Accepted to govern the h11 stack contract boundary before per-stack specs and features are added."
+    status: "accepted"
+references: []
+body: |-
+  Decision: tigr-asgi-contracts models HTTP/1.1 streaming as request and response body event flow under the HTTP scope, not as native multiplexed transport streams.
+  
+  Owned boundary:
+  - The contract vocabulary may describe HTTP request-body and response-body event flow for HTTP/1.1 scopes.
+  - The contract may classify body chunks, disconnects, trailers where represented, and application-level stream resume messages above the HTTP exchange.
+  - The contract must not introduce HTTP/1.1 stream IDs, native bidirectional stream lanes, unidirectional stream lanes, or multiplexed stream-session vocabulary.
+  
+  Peer inputs:
+  - Tigrcorn owns parser/runtime behavior for HTTP/1.1 body streaming and backpressure.
+  - Tigrbl owns binding projection onto HTTP body streams.
+  
+  Non-goals:
+  - This ADR does not define HTTP/2, HTTP/3, WebSocket, WebTransport, QUIC, or application table binding behavior.
+  - This ADR does not claim runtime support or certification evidence outside the contract surface.
+  
+  Forbidden claims:
+  - HTTP/1.1 contract rows must not claim native transport stream identity.
+  - HTTP/1.1 contract rows must not reuse HTTP/2, HTTP/3, QUIC, or WebTransport stream-ID semantics.

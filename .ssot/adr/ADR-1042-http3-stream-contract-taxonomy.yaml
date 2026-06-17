@@ -1,0 +1,33 @@
+schema_version: "0.8.0"
+kind: "adr"
+id: "adr:1042"
+number: 1042
+slug: "http3-stream-contract-taxonomy"
+title: "HTTP/3 contract streams separate HTTP taxonomy from QUIC mechanics"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Decision: tigr-asgi-contracts models HTTP/3 request, push, control, and QPACK streams as HTTP/3 contract taxonomy while treating QUIC stream mechanics as transport metadata."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    status: "accepted"
+    note: "Accepted to govern the stack boundary before per-stack specs and features are added."
+    at: "2026-06-17T12:41:21Z"
+references: []
+body: |-
+  Decision: tigr-asgi-contracts models HTTP/3 request, push, control, and QPACK streams as HTTP/3 contract taxonomy while treating QUIC stream mechanics as transport metadata.
+  
+  Owned boundary:
+  - The contract may classify HTTP/3 request streams, push streams, control streams, QPACK streams, resets, GOAWAY, and stream lifecycle events.
+  - QUIC initiator and direction facts may appear as metadata only when they preserve the HTTP/3 taxonomy.
+  
+  Peer inputs:
+  - Tigrcorn owns QUIC and HTTP/3 runtime behavior.
+  - Tigrbl owns app binding legality above the contract/runtime capability surface.
+  
+  Forbidden claims:
+  - Plain HTTP/3 contract rows must not borrow WebTransport lane semantics.
+  - HTTP/3 application contract rows must not treat control or QPACK streams as app payload carriers.

@@ -1,0 +1,33 @@
+schema_version: "0.8.0"
+kind: "adr"
+id: "adr:1041"
+number: 1041
+slug: "http2-stream-contract-carriers"
+title: "HTTP/2 streams are contract-visible multiplexed request and push carriers"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Decision: tigr-asgi-contracts models HTTP/2 streams as multiplexed HTTP request and push carriers with explicit stream identity, while keeping application events separate from runtime flow-control mechanics."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    status: "accepted"
+    note: "Accepted to govern the stack boundary before per-stack specs and features are added."
+    at: "2026-06-17T12:41:20Z"
+references: []
+body: |-
+  Decision: tigr-asgi-contracts models HTTP/2 streams as multiplexed HTTP request and push carriers with explicit stream identity, while keeping application events separate from runtime flow-control mechanics.
+  
+  Owned boundary:
+  - The contract may expose HTTP/2 stream identity, request stream, push stream, half-close, reset, and lifecycle classification metadata.
+  - The contract must keep HTTP/2 stream semantics distinct from WebSocket, WebTransport, and QUIC stream semantics.
+  
+  Peer inputs:
+  - Tigrcorn owns HTTP/2 stream ID allocation, parser/runtime lifecycle, and flow-control behavior.
+  - Tigrbl owns binding legality and app projection onto HTTP/2-capable carriers.
+  
+  Forbidden claims:
+  - Contract rows must not treat HTTP/2 push as client bidirectional application streams.
+  - Contract rows must not import QUIC or WebTransport stream-ID bit semantics into HTTP/2.

@@ -1,0 +1,33 @@
+schema_version: "0.8.0"
+kind: "adr"
+id: "adr:1045"
+number: 1045
+slug: "websocket-http2-rfc8441-contract"
+title: "WebSocket over HTTP/2 uses RFC 8441 Extended CONNECT"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Decision: tigr-asgi-contracts models WebSocket over HTTP/2 as a WebSocket session/message family bootstrapped by RFC 8441 Extended CONNECT over one HTTP/2 stream."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    status: "accepted"
+    note: "Accepted to govern the stack boundary before per-stack specs and features are added."
+    at: "2026-06-17T12:41:26Z"
+references: []
+body: |-
+  Decision: tigr-asgi-contracts models WebSocket over HTTP/2 as a WebSocket session/message family bootstrapped by RFC 8441 Extended CONNECT over one HTTP/2 stream.
+  
+  Owned boundary:
+  - The contract may classify this as a WebSocket scope with HTTP/2 carrier metadata.
+  - The contract must keep WebSocket message/session events separate from generic HTTP/2 application streams.
+  
+  Peer inputs:
+  - Tigrcorn owns RFC 8441 runtime behavior and evidence.
+  - Tigrbl owns WebSocket binding legality and app projection.
+  
+  Forbidden claims:
+  - WebSocket-over-H2 rows must not imply WebTransport lane support.
+  - WebSocket-over-H2 rows must not become a generic H2 bidirectional stream abstraction.
