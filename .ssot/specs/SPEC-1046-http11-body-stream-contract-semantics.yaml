@@ -1,0 +1,24 @@
+schema_version: "0.8.0"
+kind: "spec"
+id: "spc:1046"
+number: 1046
+slug: "http11-body-stream-contract-semantics"
+title: "HTTP/1.1 body stream contract semantics"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Defines HTTP/1.1 body-stream contract semantics as HTTP request and response body event flow under the http scope. Source specification: RFC 9112 https://www.rfc-editor.org/rfc/rfc9112. The contract must not define native h11 stream IDs, multiplexed stream lanes, bidirectional transport streams, or unidirectional transport streams."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    status: "accepted"
+    note: "Accepted to govern transport stack contract semantics."
+    at: "2026-06-17T12:48:08Z"
+references: []
+body: |-
+  Defines HTTP/1.1 body-stream contract semantics as HTTP request and response body event flow under the http scope. Source specification: RFC 9112 https://www.rfc-editor.org/rfc/rfc9112. The contract must not define native h11 stream IDs, multiplexed stream lanes, bidirectional transport streams, or unidirectional transport streams.
+spec_kind: "normative"
+adr_ids:
+  - "adr:1040"

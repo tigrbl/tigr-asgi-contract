@@ -1,0 +1,24 @@
+schema_version: "0.8.0"
+kind: "spec"
+id: "spc:1052"
+number: 1052
+slug: "websocket-http3-rfc9220-contract"
+title: "WebSocket over HTTP/3 RFC 9220 contract"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Defines WebSocket over HTTP/3 as a WebSocket session and message family bootstrapped by RFC 9220 Extended CONNECT over one HTTP/3 stream. Source specification: RFC 9220 https://www.rfc-editor.org/rfc/rfc9220. It remains separate from WebTransport over HTTP/3."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    status: "accepted"
+    note: "Accepted to govern transport stack contract semantics."
+    at: "2026-06-17T12:48:15Z"
+references: []
+body: |-
+  Defines WebSocket over HTTP/3 as a WebSocket session and message family bootstrapped by RFC 9220 Extended CONNECT over one HTTP/3 stream. Source specification: RFC 9220 https://www.rfc-editor.org/rfc/rfc9220. It remains separate from WebTransport over HTTP/3.
+spec_kind: "normative"
+adr_ids:
+  - "adr:1046"

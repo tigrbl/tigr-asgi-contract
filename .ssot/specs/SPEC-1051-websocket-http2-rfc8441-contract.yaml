@@ -1,0 +1,24 @@
+schema_version: "0.8.0"
+kind: "spec"
+id: "spc:1051"
+number: 1051
+slug: "websocket-http2-rfc8441-contract"
+title: "WebSocket over HTTP/2 RFC 8441 contract"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Defines WebSocket over HTTP/2 as a WebSocket session and message family bootstrapped by RFC 8441 Extended CONNECT over one HTTP/2 stream. Source specification: RFC 8441 https://www.rfc-editor.org/rfc/rfc8441. It must not become a generic HTTP/2 bidirectional application-stream abstraction."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    status: "accepted"
+    note: "Accepted to govern transport stack contract semantics."
+    at: "2026-06-17T12:48:14Z"
+references: []
+body: |-
+  Defines WebSocket over HTTP/2 as a WebSocket session and message family bootstrapped by RFC 8441 Extended CONNECT over one HTTP/2 stream. Source specification: RFC 8441 https://www.rfc-editor.org/rfc/rfc8441. It must not become a generic HTTP/2 bidirectional application-stream abstraction.
+spec_kind: "normative"
+adr_ids:
+  - "adr:1045"

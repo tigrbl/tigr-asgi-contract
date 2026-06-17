@@ -1,0 +1,24 @@
+schema_version: "0.8.0"
+kind: "spec"
+id: "spc:1048"
+number: 1048
+slug: "http3-stream-taxonomy-contract"
+title: "HTTP/3 stream taxonomy contract"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Defines HTTP/3 contract taxonomy for request, push, control, and QPACK streams with QUIC facts as transport metadata. Source specifications: RFC 9114 https://www.rfc-editor.org/rfc/rfc9114 and RFC 9000 https://www.rfc-editor.org/rfc/rfc9000. Plain HTTP/3 rows must not borrow WebTransport lane semantics."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    status: "accepted"
+    note: "Accepted to govern transport stack contract semantics."
+    at: "2026-06-17T12:48:10Z"
+references: []
+body: |-
+  Defines HTTP/3 contract taxonomy for request, push, control, and QPACK streams with QUIC facts as transport metadata. Source specifications: RFC 9114 https://www.rfc-editor.org/rfc/rfc9114 and RFC 9000 https://www.rfc-editor.org/rfc/rfc9000. Plain HTTP/3 rows must not borrow WebTransport lane semantics.
+spec_kind: "normative"
+adr_ids:
+  - "adr:1042"

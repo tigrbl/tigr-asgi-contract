@@ -1,0 +1,24 @@
+schema_version: "0.8.0"
+kind: "spec"
+id: "spc:1050"
+number: 1050
+slug: "webtransport-http2-fallback-contract-family"
+title: "WebTransport over HTTP/2 fallback contract family"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Defines WebTransport over HTTP/2 as a draft-target fallback contract family with capsule-carrier constraints. Source specifications: draft-ietf-webtrans-http2-14 https://datatracker.ietf.org/doc/draft-ietf-webtrans-http2/, RFC 9113 https://www.rfc-editor.org/rfc/rfc9113, and RFC 9297 https://www.rfc-editor.org/rfc/rfc9297. It must not claim QUIC-native stream IDs or QUIC datagrams."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    status: "accepted"
+    note: "Accepted to govern transport stack contract semantics."
+    at: "2026-06-17T12:48:13Z"
+references: []
+body: |-
+  Defines WebTransport over HTTP/2 as a draft-target fallback contract family with capsule-carrier constraints. Source specifications: draft-ietf-webtrans-http2-14 https://datatracker.ietf.org/doc/draft-ietf-webtrans-http2/, RFC 9113 https://www.rfc-editor.org/rfc/rfc9113, and RFC 9297 https://www.rfc-editor.org/rfc/rfc9297. It must not claim QUIC-native stream IDs or QUIC datagrams.
+spec_kind: "normative"
+adr_ids:
+  - "adr:1044"

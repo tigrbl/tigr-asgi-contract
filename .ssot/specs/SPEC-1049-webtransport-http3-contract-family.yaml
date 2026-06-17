@@ -1,0 +1,24 @@
+schema_version: "0.8.0"
+kind: "spec"
+id: "spc:1049"
+number: 1049
+slug: "webtransport-http3-contract-family"
+title: "WebTransport over HTTP/3 contract family"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "Defines the WebTransport over HTTP/3 contract family for session, bidirectional stream, unidirectional stream, datagram, close, reset, and stop-sending event shapes. Source specification: draft-ietf-webtrans-http3-15 https://datatracker.ietf.org/doc/draft-ietf-webtrans-http3/. This remains a draft-target contract family and is not WebSocket."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    status: "accepted"
+    note: "Accepted to govern transport stack contract semantics."
+    at: "2026-06-17T12:48:11Z"
+references: []
+body: |-
+  Defines the WebTransport over HTTP/3 contract family for session, bidirectional stream, unidirectional stream, datagram, close, reset, and stop-sending event shapes. Source specification: draft-ietf-webtrans-http3-15 https://datatracker.ietf.org/doc/draft-ietf-webtrans-http3/. This remains a draft-target contract family and is not WebSocket.
+spec_kind: "normative"
+adr_ids:
+  - "adr:1043"
