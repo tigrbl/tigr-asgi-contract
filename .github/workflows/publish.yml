@@ -102,8 +102,14 @@ jobs:
           mkdir -p dist/promoted
           gh release download "${{ inputs.rc_tag }}" --dir dist/promoted
       - uses: astral-sh/setup-uv@v7
-      - run: |
-          uv publish --trusted-publishing always dist/promoted/*.whl dist/promoted/*.tar.gz
+      - env:
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          if [ -n "${UV_PUBLISH_TOKEN:-}" ]; then
+            uv publish --token "$UV_PUBLISH_TOKEN" dist/promoted/*.whl dist/promoted/*.tar.gz
+          else
+            uv publish --trusted-publishing always dist/promoted/*.whl dist/promoted/*.tar.gz
+          fi
 
   publish-npm:
     name: Publish npm packages
