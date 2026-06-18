@@ -151,6 +151,8 @@ def current_version(root: Path) -> str:
 def bump_repo_version(root: Path, bump_type: str) -> tuple[str, str]:
     current = current_version(root)
     new_version = bump_version(current, bump_type)
+    if new_version == current:
+        return current, new_version
     for relative_path in VERSION_PATHS:
         write_version(root / relative_path, current, new_version)
     return current, new_version

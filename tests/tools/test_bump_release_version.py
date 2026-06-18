@@ -78,6 +78,17 @@ def test_finalize_repo_version_updates_all_files(tmp_path: Path) -> None:
         assert MODULE.read_version(tmp_path / relative_path) == "0.2.0"
 
 
+def test_finalize_repo_version_is_idempotent_for_final_versions(tmp_path: Path) -> None:
+    write_files(tmp_path, "0.2.0")
+
+    current, new = MODULE.bump_repo_version(tmp_path, "finalize")
+
+    assert current == "0.2.0"
+    assert new == "0.2.0"
+    for relative_path in MODULE.VERSION_PATHS:
+        assert MODULE.read_version(tmp_path / relative_path) == "0.2.0"
+
+
 def test_bump_repo_version_requires_consistent_versions(tmp_path: Path) -> None:
     write_files(tmp_path, "0.1.0")
     (tmp_path / "packages/contract-py/pyproject.toml").write_text(
