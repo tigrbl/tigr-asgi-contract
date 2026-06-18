@@ -35,7 +35,7 @@
     },
     {
       "path": "event_classification.yaml",
-      "sha256": "4d3e87cd2ce5d2a757cbd8bb9eb3ed6f72795d59ef6c1493eb7075e524d73151"
+      "sha256": "fbfe4cc8e0eb892b1e9e43780a44a800bf6b595e93cbd12b400a459f9891d46d"
     },
     {
       "path": "exchanges.yaml",

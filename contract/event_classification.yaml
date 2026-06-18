@@ -241,6 +241,33 @@ event_classifications:
   direction: server_to_client
   allowed_framings: []
   required_payload_fields: [stream_id]
+- event: stream.resume.request
+  channel: receive
+  scope_type: webtransport
+  binding: webtransport
+  family: stream
+  exchange: duplex
+  direction: client_to_server
+  allowed_framings: []
+  required_payload_fields: [resume_token, client_id, session_id, stream_id, binding]
+- event: stream.resume.accept
+  channel: send
+  scope_type: webtransport
+  binding: webtransport
+  family: stream
+  exchange: duplex
+  direction: server_to_client
+  allowed_framings: []
+  required_payload_fields: [resume_token, client_id, session_id, stream_id, binding, accepted_offset]
+- event: stream.resume.reject
+  channel: send
+  scope_type: webtransport
+  binding: webtransport
+  family: stream
+  exchange: duplex
+  direction: server_to_client
+  allowed_framings: []
+  required_payload_fields: [resume_token, client_id, session_id, stream_id, binding, reason]
 - event: webtransport.datagram.receive
   channel: receive
   scope_type: webtransport
