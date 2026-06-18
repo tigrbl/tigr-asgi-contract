@@ -53,6 +53,7 @@ def test_bump_version_semver() -> None:
     assert MODULE.bump_version("0.1.0", "major") == "1.0.0-dev1"
     assert MODULE.bump_version("0.1.1-dev1", "patch") == "0.1.1-dev2"
     assert MODULE.bump_version("0.1.1-dev2", "finalize") == "0.1.1"
+    assert MODULE.bump_version("0.1.1", "finalize") == "0.1.1"
 
 
 def test_bump_repo_version_updates_all_files(tmp_path: Path) -> None:

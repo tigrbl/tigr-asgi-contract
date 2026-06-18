@@ -66,7 +66,7 @@ def bump_version(current_version: str, bump_type: str) -> str:
         return f"{major}.{minor}.{patch + 1}-dev1"
     if bump_type == "finalize":
         if not is_prerelease:
-            raise ValueError("Cannot finalize a non-prerelease version")
+            return current_version
         return f"{major}.{minor}.{patch}"
     raise ValueError("bump_type must be one of: major, minor, patch, finalize")
 
