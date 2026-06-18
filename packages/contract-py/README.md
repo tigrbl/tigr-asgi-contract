@@ -6,9 +6,9 @@ Generated Python contract package for the Tigr ASGI contract. It is generated fr
 
 | Ecosystem | Package | Version | Path | Surface files | Notes |
 | --- | --- | --- | --- | --- | --- |
-| python | **`tigr-asgi-contract`** | `0.3.3` | `packages/contract-py` | 23 | Enums, models, validators |
-| npm | `@tigrbljs/tigr-asgi-contract` | `0.3.3` | `packages/contract-npm` | 23 | TypeScript and TSX surfaces |
-| rust | `tigr_asgi_contract_rs` | `0.3.3` | `packages/contract-rs` | 20 | Serde-friendly contract surfaces |
+| python | **`tigr-asgi-contract`** | `0.3.4-dev1` | `packages/contract-py` | 24 | Enums, models, validators |
+| npm | `@tigrbljs/tigr-asgi-contract` | `0.3.4-dev1` | `packages/contract-npm` | 23 | TypeScript and TSX surfaces |
+| rust | `tigr_asgi_contract_rs` | `0.3.4-dev1` | `packages/contract-rs` | 20 | Serde-friendly contract surfaces |
 
 ## Generated Surface Matrix
 
@@ -35,6 +35,7 @@ Generated Python contract package for the Tigr ASGI contract. It is generated fr
 | `scope_types` | `tigr_asgi_contract/scope_types.py` |
 | `semantics` | `tigr_asgi_contract/semantics.py` |
 | `subevents` | `tigr_asgi_contract/subevents.py` |
+| `transport_stacks` | `tigr_asgi_contract/transport_stacks.py` |
 | `validators` | `tigr_asgi_contract/validators.py` |
 | `version` | `tigr_asgi_contract/version.py` |
 
@@ -43,8 +44,8 @@ Generated Python contract package for the Tigr ASGI contract. It is generated fr
 | Field | Value |
 | --- | --- |
 | Contract name | `tigr-asgi-contract` |
-| Contract version | `0.3.3` |
-| Artifact version | `0.3.3` |
+| Contract version | `0.3.4-dev1` |
+| Artifact version | `0.3.4-dev1` |
 | Serde version | `1` |
 | Schema draft | `2020-12` |
 | Bindings | 7 |
@@ -79,7 +80,7 @@ Generated Python contract package for the Tigr ASGI contract. It is generated fr
 | Compatibility field | Value | Meaning | Source |
 | --- | --- | --- | --- |
 | `contract_name` | `tigr-asgi-contract` | Canonical contract identifier | `contract/compatibility.yaml` |
-| `contract_version` | `0.3.3` | Published contract version | `contract/compatibility.yaml` |
+| `contract_version` | `0.3.4-dev1` | Published contract version | `contract/compatibility.yaml` |
 | `serde_version` | `1` | Serialization surface version | `contract/compatibility.yaml` |
 | `schema_draft` | `2020-12` | JSON Schema draft level | `contract/compatibility.yaml` |
 
