@@ -4,6 +4,9 @@ version = "0.3.4"
 edition = "2021"
 license = "Apache-2.0"
 description = "Generated Rust contract bindings for the Tigr ASGI contract"
+authors = ["Jacob Stewart <jacob@swarmauri.com>"]
+homepage = "https://github.com/tigrbl/tigr-asgi-contract"
+repository = "https://github.com/tigrbl/tigr-asgi-contract"
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }
