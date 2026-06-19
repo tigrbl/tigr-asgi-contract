@@ -169,19 +169,38 @@ jobs:
         shell: bash
         run: |
           target_commit="$(git rev-parse HEAD)"
+          release_tag="${{ steps.meta.outputs.release_tag }}"
+          title="Release $release_tag"
+          notes="Generated, tested, and bundled release artifacts for version ${{ steps.meta.outputs.version }}."
           extra_args=()
+          edit_args=(--prerelease=false)
           if [[ "${{ inputs.force_prerelease }}" == 'true' || "${{ steps.meta.outputs.version }}" == *"-dev"* ]]; then
             extra_args+=(--prerelease)
+            edit_args=(--prerelease)
           fi
-          gh release create "${{ steps.meta.outputs.release_tag }}" \
-            dist/release/pypi/* \
-            dist/release/npm/* \
-            dist/release/crates/* \
-            dist/release/manifest.json \
-            dist/release/checksums.txt \
-            dist/release/VERSION \
-            dist/release/RELEASE_BUNDLE_SHA256.txt \
-            --target "$target_commit" \
-            --title "Release ${{ steps.meta.outputs.release_tag }}" \
-            --notes "Generated, tested, and bundled release artifacts for version ${{ steps.meta.outputs.version }}." \
-            "${extra_args[@]}"
+          assets=(
+            dist/release/pypi/*
+            dist/release/npm/*
+            dist/release/crates/*
+            dist/release/manifest.json
+            dist/release/checksums.txt
+            dist/release/VERSION
+            dist/release/RELEASE_BUNDLE_SHA256.txt
+          )
+          if gh release view "$release_tag" >/dev/null 2>&1; then
+            gh release edit "$release_tag" \
+              --target "$target_commit" \
+              --title "$title" \
+              --notes "$notes" \
+              "${edit_args[@]}"
+            if ! gh release upload "$release_tag" "${assets[@]}" --clobber; then
+              echo "::warning::Existing release assets could not be replaced; keeping current immutable release assets."
+            fi
+          else
+            gh release create "$release_tag" \
+              "${assets[@]}" \
+              --target "$target_commit" \
+              --title "$title" \
+              --notes "$notes" \
+              "${extra_args[@]}"
+          fi
