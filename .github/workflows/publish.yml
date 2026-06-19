@@ -108,18 +108,50 @@ jobs:
           set -euo pipefail
           shopt -s nullglob
           rm -rf dist/pypi
-          mkdir -p dist/pypi
+          mkdir -p dist/pypi/tigr-asgi-contract dist/pypi/tigr-asgi-contract-artifacts
           artifacts=(dist/promoted/*.whl dist/promoted/*.tar.gz)
           if [[ ${#artifacts[@]} -eq 0 ]]; then
             echo "No PyPI distributions found in promoted assets."
             exit 1
           fi
-          cp "${artifacts[@]}" dist/pypi/
-      - name: Publish Python distributions with trusted publishing
+          contract_count=0
+          artifacts_count=0
+          for artifact in "${artifacts[@]}"; do
+            filename="$(basename "$artifact")"
+            case "$filename" in
+              tigr_asgi_contract_artifacts-*|tigr-asgi-contract-artifacts-*)
+                cp "$artifact" dist/pypi/tigr-asgi-contract-artifacts/
+                artifacts_count=$((artifacts_count + 1))
+                ;;
+              tigr_asgi_contract-*|tigr-asgi-contract-*)
+                cp "$artifact" dist/pypi/tigr-asgi-contract/
+                contract_count=$((contract_count + 1))
+                ;;
+              *)
+                echo "Unexpected PyPI distribution asset: $filename"
+                exit 1
+                ;;
+            esac
+          done
+          if [[ "$contract_count" -eq 0 ]]; then
+            echo "No tigr-asgi-contract PyPI distributions found."
+            exit 1
+          fi
+          if [[ "$artifacts_count" -eq 0 ]]; then
+            echo "No tigr-asgi-contract-artifacts PyPI distributions found."
+            exit 1
+          fi
+      - name: Publish tigr-asgi-contract with trusted publishing
         uses: cobycloud/actions/actions/pypi-publish@main
         with:
           publish-mode: trusted
-          packages-dir: dist/pypi
+          packages-dir: dist/pypi/tigr-asgi-contract
+          skip-existing: "true"
+      - name: Publish tigr-asgi-contract-artifacts with trusted publishing
+        uses: cobycloud/actions/actions/pypi-publish@main
+        with:
+          publish-mode: trusted
+          packages-dir: dist/pypi/tigr-asgi-contract-artifacts
           skip-existing: "true"
 
   publish-npm:
