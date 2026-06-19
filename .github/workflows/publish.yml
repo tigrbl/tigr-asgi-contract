@@ -174,8 +174,7 @@ jobs:
       - name: Publish @tigrbljs/tigr-asgi-contract with trusted publishing
         uses: cobycloud/actions/actions/npm-publish@main
         with:
-          publish-mode: auto
-          npm-api-token: ${{ secrets.NPM_API_TOKEN }}
+          publish-mode: trusted
           node-version: '25'
           package-directory: packages/contract-npm
           cache-dependency-path: package-lock.json
@@ -186,8 +185,7 @@ jobs:
       - name: Publish @tigrbljs/tigr-asgi-contract-artifacts with trusted publishing
         uses: cobycloud/actions/actions/npm-publish@main
         with:
-          publish-mode: auto
-          npm-api-token: ${{ secrets.NPM_API_TOKEN }}
+          publish-mode: trusted
           node-version: '25'
           package-directory: packages/artifacts-npm
           cache-dependency-path: package-lock.json
