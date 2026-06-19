@@ -103,6 +103,20 @@ def test_publish_tarball_allows_github_actions_trusted_publishing(
     ]
 
 
+def test_build_npm_env_removes_tokens_for_github_actions(monkeypatch) -> None:
+    monkeypatch.setenv("GITHUB_ACTIONS", "true")
+    monkeypatch.setenv("NODE_AUTH_TOKEN", "token")
+    monkeypatch.setenv("NPM_TOKEN", "token")
+    monkeypatch.setenv("NPM_CONFIG_ALWAYS_AUTH", "true")
+
+    env = MODULE.build_npm_env()
+
+    assert env["GITHUB_ACTIONS"] == "true"
+    assert "NODE_AUTH_TOKEN" not in env
+    assert "NPM_TOKEN" not in env
+    assert "NPM_CONFIG_ALWAYS_AUTH" not in env
+
+
 def test_publish_tarball_rejects_missing_local_auth(tmp_path: Path, monkeypatch) -> None:
     tarball = MODULE.read_tarball_metadata(
         write_tarball(

@@ -59,6 +59,11 @@ def npm_version_exists(package_name: str, version: str) -> bool:
 
 def build_npm_env() -> dict[str, str]:
     env = os.environ.copy()
+    if env.get("GITHUB_ACTIONS"):
+        env.pop("NODE_AUTH_TOKEN", None)
+        env.pop("NPM_TOKEN", None)
+        env.pop("NPM_CONFIG_ALWAYS_AUTH", None)
+        return env
     token = env.get("NODE_AUTH_TOKEN") or env.get("NPM_TOKEN")
     if token:
         env["NODE_AUTH_TOKEN"] = token
