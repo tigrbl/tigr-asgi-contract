@@ -6,9 +6,9 @@ Canonical Rust artifact crate for the Tigr ASGI contract. This package ships the
 
 | Ecosystem | Package | Version | Path | Surface files | Notes |
 | --- | --- | --- | --- | --- | --- |
-| python | `tigr-asgi-contract-artifacts` | `0.3.5-dev5` | `packages/artifacts-py` | 1 | Vendored file accessors |
-| npm | `@tigrbljs/tigr-asgi-contract-artifacts` | `0.3.5-dev5` | `packages/artifacts-npm` | 4 | Packaged artifact exports |
-| rust | **`tigr_asgi_contract_artifacts_rs`** | `0.3.5-dev5` | `packages/artifacts-rs` | 1 | Embedded artifact accessors |
+| python | `tigr-asgi-contract-artifacts` | `0.3.5-dev6` | `packages/artifacts-py` | 1 | Vendored file accessors |
+| npm | `@tigrbljs/tigr-asgi-contract-artifacts` | `0.3.5-dev6` | `packages/artifacts-npm` | 4 | Packaged artifact exports |
+| rust | **`tigr_asgi_contract_artifacts_rs`** | `0.3.5-dev6` | `packages/artifacts-rs` | 1 | Embedded artifact accessors |
 
 ## Artifact Inventory Matrix
 
@@ -18,7 +18,7 @@ Canonical Rust artifact crate for the Tigr ASGI contract. This package ships the
 | `bindings.yaml` | registry | `0a08946ef696` |
 | `capabilities.yaml` | registry | `8ca0167eccbc` |
 | `channels.yaml` | registry | `66a6a3b36551` |
-| `compatibility.yaml` | registry | `b333a6c15f26` |
+| `compatibility.yaml` | registry | `19febfd52e1e` |
 | `completion.yaml` | registry | `a1b38e52c5e8` |
 | `directions.yaml` | registry | `5b3e8f536f80` |
 | `event_classification.yaml` | registry | `fbfe4cc8e0eb` |
@@ -133,8 +133,8 @@ Canonical Rust artifact crate for the Tigr ASGI contract. This package ships the
 | Field | Value |
 | --- | --- |
 | Contract name | `tigr-asgi-contract` |
-| Contract version | `0.3.5-dev5` |
-| Artifact version | `0.3.5-dev5` |
+| Contract version | `0.3.5-dev6` |
+| Artifact version | `0.3.5-dev6` |
 | Serde version | `1` |
 | Schema draft | `2020-12` |
 | Bindings | 7 |
@@ -169,7 +169,7 @@ Canonical Rust artifact crate for the Tigr ASGI contract. This package ships the
 | Compatibility field | Value | Meaning | Source |
 | --- | --- | --- | --- |
 | `contract_name` | `tigr-asgi-contract` | Canonical contract identifier | `contract/compatibility.yaml` |
-| `contract_version` | `0.3.5-dev5` | Published contract version | `contract/compatibility.yaml` |
+| `contract_version` | `0.3.5-dev6` | Published contract version | `contract/compatibility.yaml` |
 | `serde_version` | `1` | Serialization surface version | `contract/compatibility.yaml` |
 | `schema_draft` | `2020-12` | JSON Schema draft level | `contract/compatibility.yaml` |
 
