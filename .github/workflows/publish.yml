@@ -102,15 +102,25 @@ jobs:
           mkdir -p dist/promoted
           gh release download "${{ inputs.rc_tag }}" --dir dist/promoted
       - uses: astral-sh/setup-uv@v7
-      - env:
-          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+      - name: Select PyPI distributions
+        shell: bash
         run: |
-          if [ -n "${UV_PUBLISH_TOKEN:-}" ]; then
-            uv publish --token "$UV_PUBLISH_TOKEN" --check-url https://pypi.org/simple/ dist/promoted/*.whl dist/promoted/*.tar.gz
-          else
-            unset UV_PUBLISH_TOKEN UV_PUBLISH_USERNAME UV_PUBLISH_PASSWORD
-            uv publish --trusted-publishing always --check-url https://pypi.org/simple/ dist/promoted/*.whl dist/promoted/*.tar.gz
+          set -euo pipefail
+          shopt -s nullglob
+          rm -rf dist/pypi
+          mkdir -p dist/pypi
+          artifacts=(dist/promoted/*.whl dist/promoted/*.tar.gz)
+          if [[ ${#artifacts[@]} -eq 0 ]]; then
+            echo "No PyPI distributions found in promoted assets."
+            exit 1
           fi
+          cp "${artifacts[@]}" dist/pypi/
+      - name: Publish Python distributions with trusted publishing
+        uses: cobycloud/actions/actions/pypi-publish@main
+        with:
+          publish-mode: trusted
+          packages-dir: dist/pypi
+          skip-existing: "true"
 
   publish-npm:
     name: Publish npm packages

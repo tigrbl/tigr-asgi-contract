@@ -99,6 +99,7 @@ def test_publish_tarball_allows_github_actions_trusted_publishing(
             "public",
             "--registry",
             "https://registry.npmjs.org/",
+            "--provenance",
         ]
     ]
 

@@ -72,9 +72,9 @@ Publishing uses the promoted candidate as the source of truth.
 
 Required GitHub Actions secrets:
 
-- `PYPI_API_TOKEN` for PyPI release publishing
-- `NPM_TOKEN` for npm publishing
-- `CARGO_REGISTRY_TOKEN` for crates.io publishing
+- PyPI trusted publishing configured for this repository and workflow identity
+- npm trusted publishing configured for this repository, workflow identity, and package names
+- `CRATES_API_TOKEN` for crates.io publishing
 
 ### Release sequence
 

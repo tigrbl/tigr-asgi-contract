@@ -85,7 +85,16 @@ def publish_tarball(tarball: NpmTarball) -> None:
             "GitHub Actions with npm trusted publishing configured."
         )
     subprocess.run(
-        ["npm", "publish", str(tarball.path), "--access", "public", "--registry", "https://registry.npmjs.org/"],
+        [
+            "npm",
+            "publish",
+            str(tarball.path),
+            "--access",
+            "public",
+            "--registry",
+            "https://registry.npmjs.org/",
+            "--provenance",
+        ],
         check=True,
         env=npm_env,
     )
