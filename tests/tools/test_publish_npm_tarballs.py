@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import io
 import json
+import os
 import sys
 import tarfile
 from pathlib import Path
@@ -65,3 +66,59 @@ def test_tarball_sorting_prefers_older_versions_first(tmp_path: Path) -> None:
         "tigrbljs-tigr-asgi-contract-0.1.1-dev2.tgz",
         "tigrbljs-tigr-asgi-contract-0.1.1.tgz",
     ]
+
+
+def test_publish_tarball_allows_github_actions_trusted_publishing(
+    tmp_path: Path, monkeypatch
+) -> None:
+    tarball_path = write_tarball(
+        tmp_path,
+        "tigrbljs-tigr-asgi-contract-0.1.1.tgz",
+        package_name="@tigrbljs/tigr-asgi-contract",
+        version="0.1.1",
+    )
+    tarball = MODULE.read_tarball_metadata(tarball_path)
+    calls: list[list[str]] = []
+
+    monkeypatch.setattr(MODULE, "npm_version_exists", lambda package_name, version: False)
+    monkeypatch.setattr(
+        MODULE,
+        "build_npm_env",
+        lambda: {"GITHUB_ACTIONS": "true", "PATH": os.environ.get("PATH", "")},
+    )
+    monkeypatch.setattr(MODULE.subprocess, "run", lambda args, **kwargs: calls.append(args))
+
+    MODULE.publish_tarball(tarball)
+
+    assert calls == [
+        [
+            "npm",
+            "publish",
+            str(tarball_path),
+            "--access",
+            "public",
+            "--registry",
+            "https://registry.npmjs.org/",
+        ]
+    ]
+
+
+def test_publish_tarball_rejects_missing_local_auth(tmp_path: Path, monkeypatch) -> None:
+    tarball = MODULE.read_tarball_metadata(
+        write_tarball(
+            tmp_path,
+            "tigrbljs-tigr-asgi-contract-0.1.1.tgz",
+            package_name="@tigrbljs/tigr-asgi-contract",
+            version="0.1.1",
+        )
+    )
+
+    monkeypatch.setattr(MODULE, "npm_version_exists", lambda package_name, version: False)
+    monkeypatch.setattr(MODULE, "build_npm_env", lambda: {})
+
+    try:
+        MODULE.publish_tarball(tarball)
+    except RuntimeError as exc:
+        assert "npm authentication missing" in str(exc)
+    else:
+        raise AssertionError("publish_tarball should reject local publish without auth")

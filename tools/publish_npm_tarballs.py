@@ -73,10 +73,10 @@ def publish_tarball(tarball: NpmTarball) -> None:
         print(f"skip existing {tarball.package_name}@{tarball.version}")
         return
     npm_env = build_npm_env()
-    if not (npm_env.get("NODE_AUTH_TOKEN") or npm_env.get("NPM_TOKEN")):
+    if not (npm_env.get("NODE_AUTH_TOKEN") or npm_env.get("NPM_TOKEN") or npm_env.get("GITHUB_ACTIONS")):
         raise RuntimeError(
-            "npm authentication token missing. Set NODE_AUTH_TOKEN or NPM_TOKEN "
-            "(for GitHub Actions, map this from secrets.NPM_TOKEN)."
+            "npm authentication missing. Set NODE_AUTH_TOKEN/NPM_TOKEN or run from "
+            "GitHub Actions with npm trusted publishing configured."
         )
     subprocess.run(
         ["npm", "publish", str(tarball.path), "--access", "public", "--registry", "https://registry.npmjs.org/"],
