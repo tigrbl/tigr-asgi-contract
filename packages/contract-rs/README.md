@@ -6,9 +6,9 @@ Generated Rust contract crate for the Tigr ASGI contract. It is generated from t
 
 | Ecosystem | Package | Version | Path | Surface files | Notes |
 | --- | --- | --- | --- | --- | --- |
-| python | `tigr-asgi-contract` | `0.3.5-dev7` | `packages/contract-py` | 24 | Enums, models, validators |
-| npm | `@tigrbljs/tigr-asgi-contract` | `0.3.5-dev7` | `packages/contract-npm` | 23 | TypeScript and TSX surfaces |
-| rust | **`tigr_asgi_contract_rs`** | `0.3.5-dev7` | `packages/contract-rs` | 20 | Serde-friendly contract surfaces |
+| python | `tigr-asgi-contract` | `0.3.5-dev8` | `packages/contract-py` | 24 | Enums, models, validators |
+| npm | `@tigrbljs/tigr-asgi-contract` | `0.3.5-dev8` | `packages/contract-npm` | 23 | TypeScript and TSX surfaces |
+| rust | **`tigr_asgi_contract_rs`** | `0.3.5-dev8` | `packages/contract-rs` | 20 | Serde-friendly contract surfaces |
 
 ## Generated Surface Matrix
 
@@ -40,8 +40,8 @@ Generated Rust contract crate for the Tigr ASGI contract. It is generated from t
 | Field | Value |
 | --- | --- |
 | Contract name | `tigr-asgi-contract` |
-| Contract version | `0.3.5-dev7` |
-| Artifact version | `0.3.5-dev7` |
+| Contract version | `0.3.5-dev8` |
+| Artifact version | `0.3.5-dev8` |
 | Serde version | `1` |
 | Schema draft | `2020-12` |
 | Bindings | 7 |
@@ -76,7 +76,7 @@ Generated Rust contract crate for the Tigr ASGI contract. It is generated from t
 | Compatibility field | Value | Meaning | Source |
 | --- | --- | --- | --- |
 | `contract_name` | `tigr-asgi-contract` | Canonical contract identifier | `contract/compatibility.yaml` |
-| `contract_version` | `0.3.5-dev7` | Published contract version | `contract/compatibility.yaml` |
+| `contract_version` | `0.3.5-dev8` | Published contract version | `contract/compatibility.yaml` |
 | `serde_version` | `1` | Serialization surface version | `contract/compatibility.yaml` |
 | `schema_draft` | `2020-12` | JSON Schema draft level | `contract/compatibility.yaml` |
 

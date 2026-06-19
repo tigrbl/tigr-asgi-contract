@@ -1,6 +1,6 @@
 [package]
 name = "tigr_asgi_contract_artifacts_rs"
-version = "0.3.5-dev7"
+version = "0.3.5-dev8"
 edition = "2021"
 license = "Apache-2.0"
 description = "Canonical contract artifacts for the Tigr ASGI contract"
