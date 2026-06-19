@@ -108,6 +108,7 @@ jobs:
           if [ -n "${UV_PUBLISH_TOKEN:-}" ]; then
             uv publish --token "$UV_PUBLISH_TOKEN" dist/promoted/*.whl dist/promoted/*.tar.gz
           else
+            unset UV_PUBLISH_TOKEN UV_PUBLISH_USERNAME UV_PUBLISH_PASSWORD
             uv publish --trusted-publishing always dist/promoted/*.whl dist/promoted/*.tar.gz
           fi
 
