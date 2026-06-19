@@ -19,5 +19,9 @@
   "scripts": {
     "prepack": "node scripts/prepack.mjs",
     "postpack": "node scripts/postpack.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tigrbl/tigr-asgi-contract"
   }
 }
