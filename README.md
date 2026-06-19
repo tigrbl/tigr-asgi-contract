@@ -6,25 +6,25 @@
 
 | Ecosystem | Package | Version | Path | Surface files | Notes |
 | --- | --- | --- | --- | --- | --- |
-| python | `tigr-asgi-contract-artifacts` | `0.3.5-dev3` | `packages/artifacts-py` | 1 | Vendored file accessors |
-| npm | `@tigrbljs/tigr-asgi-contract-artifacts` | `0.3.5-dev3` | `packages/artifacts-npm` | 4 | Packaged artifact exports |
-| rust | `tigr_asgi_contract_artifacts_rs` | `0.3.5-dev3` | `packages/artifacts-rs` | 1 | Embedded artifact accessors |
+| python | `tigr-asgi-contract-artifacts` | `0.3.5-dev4` | `packages/artifacts-py` | 1 | Vendored file accessors |
+| npm | `@tigrbljs/tigr-asgi-contract-artifacts` | `0.3.5-dev4` | `packages/artifacts-npm` | 4 | Packaged artifact exports |
+| rust | `tigr_asgi_contract_artifacts_rs` | `0.3.5-dev4` | `packages/artifacts-rs` | 1 | Embedded artifact accessors |
 
 ## Contract Package Matrix
 
 | Ecosystem | Package | Version | Path | Surface files | Notes |
 | --- | --- | --- | --- | --- | --- |
-| python | `tigr-asgi-contract` | `0.3.5-dev3` | `packages/contract-py` | 24 | Enums, models, validators |
-| npm | `@tigrbljs/tigr-asgi-contract` | `0.3.5-dev3` | `packages/contract-npm` | 23 | TypeScript and TSX surfaces |
-| rust | `tigr_asgi_contract_rs` | `0.3.5-dev3` | `packages/contract-rs` | 20 | Serde-friendly contract surfaces |
+| python | `tigr-asgi-contract` | `0.3.5-dev4` | `packages/contract-py` | 24 | Enums, models, validators |
+| npm | `@tigrbljs/tigr-asgi-contract` | `0.3.5-dev4` | `packages/contract-npm` | 23 | TypeScript and TSX surfaces |
+| rust | `tigr_asgi_contract_rs` | `0.3.5-dev4` | `packages/contract-rs` | 20 | Serde-friendly contract surfaces |
 
 ## Release Matrix
 
 | Field | Value |
 | --- | --- |
 | Contract name | `tigr-asgi-contract` |
-| Contract version | `0.3.5-dev3` |
-| Artifact version | `0.3.5-dev3` |
+| Contract version | `0.3.5-dev4` |
+| Artifact version | `0.3.5-dev4` |
 | Serde version | `1` |
 | Schema draft | `2020-12` |
 | Bindings | 7 |
@@ -59,7 +59,7 @@
 | Compatibility field | Value | Meaning | Source |
 | --- | --- | --- | --- |
 | `contract_name` | `tigr-asgi-contract` | Canonical contract identifier | `contract/compatibility.yaml` |
-| `contract_version` | `0.3.5-dev3` | Published contract version | `contract/compatibility.yaml` |
+| `contract_version` | `0.3.5-dev4` | Published contract version | `contract/compatibility.yaml` |
 | `serde_version` | `1` | Serialization surface version | `contract/compatibility.yaml` |
 | `schema_draft` | `2020-12` | JSON Schema draft level | `contract/compatibility.yaml` |
 
