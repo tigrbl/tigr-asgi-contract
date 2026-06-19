@@ -223,18 +223,16 @@ jobs:
       - name: Publish tigr_asgi_contract_artifacts_rs
         uses: cobycloud/actions/actions/crates-publish@main
         with:
-          publish-mode: token
+          publish-mode: trusted
           working-directory: packages/artifacts-rs
-          crates-api-token: ${{ secrets.CRATES_API_TOKEN }}
           allow-dirty: 'true'
           no-verify: 'true'
           skip-existing: 'true'
       - name: Publish tigr_asgi_contract_rs
         uses: cobycloud/actions/actions/crates-publish@main
         with:
-          publish-mode: token
+          publish-mode: trusted
           working-directory: packages/contract-rs
-          crates-api-token: ${{ secrets.CRATES_API_TOKEN }}
           allow-dirty: 'true'
           no-verify: 'true'
           skip-existing: 'true'
