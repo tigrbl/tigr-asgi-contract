@@ -123,6 +123,7 @@ jobs:
     uses: ./.github/workflows/publish.yml
     with:
       rc_tag: tigr-asgi-contracts==${{ needs.bump-version.outputs.version }}
+      release_ref: ${{ needs.bump-version.outputs.release_ref }}
       create_github_release: ${{ inputs.publish_to_gh }}
       force_prerelease: ${{ inputs.bump_type != 'finalize' }}
       publish_to_pypi: ${{ inputs.publish_to_pypi }}

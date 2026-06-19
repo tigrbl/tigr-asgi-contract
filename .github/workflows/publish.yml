@@ -8,6 +8,11 @@ on:
         description: Promoted release tag to publish from
         required: true
         type: string
+      release_ref:
+        description: Commit ref containing the promoted release package versions
+        required: false
+        default: ''
+        type: string
       create_github_release:
         description: Create a GitHub release for the promoted version
         required: false
@@ -43,6 +48,10 @@ on:
       rc_tag:
         description: Promoted release tag to publish from
         required: true
+      release_ref:
+        description: Commit ref containing the promoted release package versions
+        required: false
+        default: ''
       create_github_release:
         description: Create a GitHub release for the promoted version
         required: true
@@ -160,72 +169,74 @@ jobs:
     if: ${{ inputs.publish_to_npmjs }}
     steps:
       - uses: actions/checkout@v4
-      - name: Download promoted assets
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        shell: bash
-        run: |
-          mkdir -p dist/promoted/current
-          gh release download "${{ inputs.rc_tag }}" --dir dist/promoted/current
-      - name: Download previous npm release bundles
-        if: ${{ inputs.npm_release_count != '1' }}
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GH_REPO: ${{ github.repository }}
-          CURRENT_TAG: ${{ inputs.rc_tag }}
-          NPM_RELEASE_COUNT: ${{ inputs.npm_release_count }}
-        shell: bash
-        run: |
-          python - <<'PY'
-          import json
-          import os
-          import urllib.request
-          from pathlib import Path
-
-          repo = os.environ["GITHUB_REPOSITORY"]
-          token = os.environ["GH_TOKEN"]
-          current_tag = os.environ["CURRENT_TAG"]
-          count = max(int(os.environ["NPM_RELEASE_COUNT"]) - 1, 0)
-          request = urllib.request.Request(
-              f"https://api.github.com/repos/{repo}/releases?per_page=20",
-              headers={
-                  "Accept": "application/vnd.github+json",
-                  "Authorization": f"Bearer {token}",
-                  "User-Agent": "tigr-asgi-contracts-release-workflow",
-              },
-          )
-          with urllib.request.urlopen(request) as response:
-              payload = json.load(response)
-          tags = []
-          for release in payload:
-              if release.get("draft"):
-                  continue
-              tag = release.get("tag_name", "")
-              if not tag.startswith("tigr-asgi-contracts=="):
-                  continue
-              if tag == current_tag:
-                  continue
-              tags.append(tag)
-          Path("dist/promoted/recent_tags.txt").write_text("\n".join(tags[:count]), encoding="utf-8")
-          PY
-          while IFS= read -r tag; do
-            [ -z "$tag" ] && continue
-            safe_tag=$(printf '%s' "$tag" | tr -c 'A-Za-z0-9._-' '_')
-            mkdir -p "dist/promoted/$safe_tag"
-            gh release download "$tag" --pattern "*.tgz" --dir "dist/promoted/$safe_tag"
-          done < dist/promoted/recent_tags.txt
-      - uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-      - uses: astral-sh/setup-uv@v7
+          ref: ${{ inputs.release_ref != '' && inputs.release_ref || github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: '25'
           registry-url: 'https://registry.npmjs.org'
-      - run: |
-          uv run --no-project --python 3.10 python tools/publish_npm_tarballs.py --root dist/promoted
+      - name: Check @tigrbljs/tigr-asgi-contract version
+        id: contract-npm
+        shell: bash
+        working-directory: packages/contract-npm
+        run: |
+          set -euo pipefail
+          package_name="$(node -p "require('./package.json').name")"
+          package_version="$(node -p "require('./package.json').version")"
+          echo "package=${package_name}" >> "$GITHUB_OUTPUT"
+          echo "version=${package_version}" >> "$GITHUB_OUTPUT"
+          if npm view "${package_name}@${package_version}" version --json >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Publish @tigrbljs/tigr-asgi-contract with trusted publishing
+        if: ${{ steps.contract-npm.outputs.exists != 'true' }}
+        uses: cobycloud/actions/actions/npm-publish@main
+        with:
+          publish-mode: trusted
+          node-version: '25'
+          package-directory: packages/contract-npm
+          cache-dependency-path: package-lock.json
+          install-command: ''
+          access: public
+          provenance: 'true'
+      - name: Skip existing @tigrbljs/tigr-asgi-contract
+        if: ${{ steps.contract-npm.outputs.exists == 'true' }}
+        shell: bash
+        run: |
+          echo "Skipping ${{ steps.contract-npm.outputs.package }}@${{ steps.contract-npm.outputs.version }}; it already exists on npm."
+      - name: Check @tigrbljs/tigr-asgi-contract-artifacts version
+        id: artifacts-npm
+        shell: bash
+        working-directory: packages/artifacts-npm
+        run: |
+          set -euo pipefail
+          package_name="$(node -p "require('./package.json').name")"
+          package_version="$(node -p "require('./package.json').version")"
+          echo "package=${package_name}" >> "$GITHUB_OUTPUT"
+          echo "version=${package_version}" >> "$GITHUB_OUTPUT"
+          if npm view "${package_name}@${package_version}" version --json >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Publish @tigrbljs/tigr-asgi-contract-artifacts with trusted publishing
+        if: ${{ steps.artifacts-npm.outputs.exists != 'true' }}
+        uses: cobycloud/actions/actions/npm-publish@main
+        with:
+          publish-mode: trusted
+          node-version: '25'
+          package-directory: packages/artifacts-npm
+          cache-dependency-path: package-lock.json
+          install-command: ''
+          access: public
+          provenance: 'true'
+      - name: Skip existing @tigrbljs/tigr-asgi-contract-artifacts
+        if: ${{ steps.artifacts-npm.outputs.exists == 'true' }}
+        shell: bash
+        run: |
+          echo "Skipping ${{ steps.artifacts-npm.outputs.package }}@${{ steps.artifacts-npm.outputs.version }}; it already exists on npm."
 
   publish-crates:
     name: Publish Rust crates
