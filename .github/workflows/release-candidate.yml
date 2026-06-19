@@ -188,11 +188,13 @@ jobs:
             dist/release/RELEASE_BUNDLE_SHA256.txt
           )
           if gh release view "$release_tag" >/dev/null 2>&1; then
-            gh release edit "$release_tag" \
+            if ! gh release edit "$release_tag" \
               --target "$target_commit" \
               --title "$title" \
               --notes "$notes" \
-              "${edit_args[@]}"
+              "${edit_args[@]}"; then
+              echo "::warning::Existing release metadata could not be updated; keeping current immutable release metadata."
+            fi
             if ! gh release upload "$release_tag" "${assets[@]}" --clobber; then
               echo "::warning::Existing release assets could not be replaced; keeping current immutable release assets."
             fi
