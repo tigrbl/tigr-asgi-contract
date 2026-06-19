@@ -1,7 +1,7 @@
 {
   "name": "tigr-asgi-contract",
-  "contract_version": "0.3.5-dev2",
-  "artifact_version": "0.3.5-dev2",
+  "contract_version": "0.3.5-dev3",
+  "artifact_version": "0.3.5-dev3",
   "serde_version": 1,
   "schema_draft": "2020-12",
   "files": [
@@ -23,7 +23,7 @@
     },
     {
       "path": "compatibility.yaml",
-      "sha256": "671aa2d5b1d20496573ab93bbeaa32934fea928e50bdc43d239406089a3f3f5d"
+      "sha256": "662bdd134da5df116d5e07ee9c263f43a3982304a9ca49098d43a354f32297ab"
     },
     {
       "path": "completion.yaml",
