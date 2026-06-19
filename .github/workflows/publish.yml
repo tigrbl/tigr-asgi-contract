@@ -171,25 +171,6 @@ jobs:
       - uses: actions/checkout@v5
         with:
           ref: ${{ inputs.release_ref != '' && inputs.release_ref || github.ref_name }}
-      - uses: actions/setup-node@v5
-        with:
-          node-version: '25'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Check @tigrbljs/tigr-asgi-contract version
-        id: contract-npm
-        shell: bash
-        working-directory: packages/contract-npm
-        run: |
-          set -euo pipefail
-          package_name="$(node -p "require('./package.json').name")"
-          package_version="$(node -p "require('./package.json').version")"
-          echo "package=${package_name}" >> "$GITHUB_OUTPUT"
-          echo "version=${package_version}" >> "$GITHUB_OUTPUT"
-          if npm view "${package_name}@${package_version}" version --json >/dev/null 2>&1; then
-            echo "exists=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "exists=false" >> "$GITHUB_OUTPUT"
-          fi
       - name: Publish @tigrbljs/tigr-asgi-contract with trusted publishing
         uses: cobycloud/actions/actions/npm-publish@main
         with:
@@ -201,21 +182,6 @@ jobs:
           access: public
           provenance: 'true'
           skip-existing: 'true'
-      - name: Check @tigrbljs/tigr-asgi-contract-artifacts version
-        id: artifacts-npm
-        shell: bash
-        working-directory: packages/artifacts-npm
-        run: |
-          set -euo pipefail
-          package_name="$(node -p "require('./package.json').name")"
-          package_version="$(node -p "require('./package.json').version")"
-          echo "package=${package_name}" >> "$GITHUB_OUTPUT"
-          echo "version=${package_version}" >> "$GITHUB_OUTPUT"
-          if npm view "${package_name}@${package_version}" version --json >/dev/null 2>&1; then
-            echo "exists=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "exists=false" >> "$GITHUB_OUTPUT"
-          fi
       - name: Publish @tigrbljs/tigr-asgi-contract-artifacts with trusted publishing
         uses: cobycloud/actions/actions/npm-publish@main
         with:

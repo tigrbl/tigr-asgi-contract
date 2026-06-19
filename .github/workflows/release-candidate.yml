@@ -158,7 +158,7 @@ jobs:
       - shell: bash
         run: |
           find dist/release -type f -print0 | sort -z | xargs -0 sha256sum > dist/release/RELEASE_BUNDLE_SHA256.txt
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: release-bundle-${{ steps.meta.outputs.release_tag }}
           path: dist/release/**

@@ -31,7 +31,7 @@ jobs:
       - run: uv run --frozen python tools/generate_all.py
       - run: git diff --stat > generated.diff.txt || true
       - run: tar -czf generated-bindings-preview.tar.gz packages/contract-py packages/contract-rs packages/contract-npm contract/manifest.json contract/checksums.txt
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: generated-bindings-preview
           path: |
