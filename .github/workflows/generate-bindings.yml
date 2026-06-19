@@ -22,8 +22,8 @@ jobs:
     name: Generate bindings preview bundle
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.10'
       - uses: astral-sh/setup-uv@v7
@@ -31,7 +31,7 @@ jobs:
       - run: uv run --frozen python tools/generate_all.py
       - run: git diff --stat > generated.diff.txt || true
       - run: tar -czf generated-bindings-preview.tar.gz packages/contract-py packages/contract-rs packages/contract-npm contract/manifest.json contract/checksums.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: generated-bindings-preview
           path: |

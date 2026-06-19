@@ -168,10 +168,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ inputs.publish_to_npmjs }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ inputs.release_ref != '' && inputs.release_ref || github.ref_name }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '25'
           registry-url: 'https://registry.npmjs.org'
@@ -191,7 +191,6 @@ jobs:
             echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
       - name: Publish @tigrbljs/tigr-asgi-contract with trusted publishing
-        if: ${{ steps.contract-npm.outputs.exists != 'true' }}
         uses: cobycloud/actions/actions/npm-publish@main
         with:
           publish-mode: trusted
@@ -201,11 +200,7 @@ jobs:
           install-command: ''
           access: public
           provenance: 'true'
-      - name: Skip existing @tigrbljs/tigr-asgi-contract
-        if: ${{ steps.contract-npm.outputs.exists == 'true' }}
-        shell: bash
-        run: |
-          echo "Skipping ${{ steps.contract-npm.outputs.package }}@${{ steps.contract-npm.outputs.version }}; it already exists on npm."
+          skip-existing: 'true'
       - name: Check @tigrbljs/tigr-asgi-contract-artifacts version
         id: artifacts-npm
         shell: bash
@@ -222,7 +217,6 @@ jobs:
             echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
       - name: Publish @tigrbljs/tigr-asgi-contract-artifacts with trusted publishing
-        if: ${{ steps.artifacts-npm.outputs.exists != 'true' }}
         uses: cobycloud/actions/actions/npm-publish@main
         with:
           publish-mode: trusted
@@ -232,22 +226,18 @@ jobs:
           install-command: ''
           access: public
           provenance: 'true'
-      - name: Skip existing @tigrbljs/tigr-asgi-contract-artifacts
-        if: ${{ steps.artifacts-npm.outputs.exists == 'true' }}
-        shell: bash
-        run: |
-          echo "Skipping ${{ steps.artifacts-npm.outputs.package }}@${{ steps.artifacts-npm.outputs.version }}; it already exists on npm."
+          skip-existing: 'true'
 
   publish-crates:
     name: Publish Rust crates
     runs-on: ubuntu-latest
     if: ${{ inputs.publish_to_crates }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - uses: dtolnay/rust-toolchain@stable
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.10'
       - uses: astral-sh/setup-uv@v7
@@ -262,11 +252,24 @@ jobs:
       - run: uv run --frozen python tools/generate_all.py
       - run: git diff --exit-code
       - run: uv run --no-project --python 3.10 python packages/artifacts-rs/scripts/vendor_contract.py
-      - env:
-          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_API_TOKEN }}
-        run: |
-          cargo publish --manifest-path packages/artifacts-rs/Cargo.toml --allow-dirty --no-verify
-          cargo publish --manifest-path packages/contract-rs/Cargo.toml --allow-dirty --no-verify
+      - name: Publish tigr_asgi_contract_artifacts_rs
+        uses: cobycloud/actions/actions/crates-publish@main
+        with:
+          publish-mode: token
+          working-directory: packages/artifacts-rs
+          crates-api-token: ${{ secrets.CRATES_API_TOKEN }}
+          allow-dirty: 'true'
+          no-verify: 'true'
+          skip-existing: 'true'
+      - name: Publish tigr_asgi_contract_rs
+        uses: cobycloud/actions/actions/crates-publish@main
+        with:
+          publish-mode: token
+          working-directory: packages/contract-rs
+          crates-api-token: ${{ secrets.CRATES_API_TOKEN }}
+          allow-dirty: 'true'
+          no-verify: 'true'
+          skip-existing: 'true'
       - run: rm -rf packages/artifacts-rs/contract
 
   finalize-release:
@@ -275,7 +278,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ always() && inputs.create_github_release && contains(fromJSON('["success","skipped"]'), needs.publish-pypi.result) && contains(fromJSON('["success","skipped"]'), needs.publish-npm.result) && contains(fromJSON('["success","skipped"]'), needs.publish-crates.result) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Download promoted assets
