@@ -108,6 +108,7 @@ def test_build_npm_env_removes_tokens_for_github_actions(monkeypatch) -> None:
     monkeypatch.setenv("NODE_AUTH_TOKEN", "token")
     monkeypatch.setenv("NPM_TOKEN", "token")
     monkeypatch.setenv("NPM_CONFIG_ALWAYS_AUTH", "true")
+    monkeypatch.setenv("NPM_CONFIG_USERCONFIG", "/tmp/.npmrc")
 
     env = MODULE.build_npm_env()
 
@@ -115,6 +116,7 @@ def test_build_npm_env_removes_tokens_for_github_actions(monkeypatch) -> None:
     assert "NODE_AUTH_TOKEN" not in env
     assert "NPM_TOKEN" not in env
     assert "NPM_CONFIG_ALWAYS_AUTH" not in env
+    assert "NPM_CONFIG_USERCONFIG" not in env
 
 
 def test_publish_tarball_rejects_missing_local_auth(tmp_path: Path, monkeypatch) -> None:

@@ -63,6 +63,7 @@ def build_npm_env() -> dict[str, str]:
         env.pop("NODE_AUTH_TOKEN", None)
         env.pop("NPM_TOKEN", None)
         env.pop("NPM_CONFIG_ALWAYS_AUTH", None)
+        env.pop("NPM_CONFIG_USERCONFIG", None)
         return env
     token = env.get("NODE_AUTH_TOKEN") or env.get("NPM_TOKEN")
     if token:
