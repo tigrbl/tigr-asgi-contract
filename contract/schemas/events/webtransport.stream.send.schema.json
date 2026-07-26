@@ -69,7 +69,6 @@
     "stream_direction": {
       "enum": [
         "bidi",
-        "client_to_server",
         "server_to_client"
       ]
     },

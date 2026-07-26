@@ -67,9 +67,9 @@ Canonical Rust artifact crate for the Tigr ASGI contract. This package ships the
 | `schemas/events/webtransport.datagram.send.schema.json` | schema | `5e5bb8220d54` |
 | `schemas/events/webtransport.disconnect.schema.json` | schema | `8df0b9ea2978` |
 | `schemas/events/webtransport.stream.close.schema.json` | schema | `cbe00704dba3` |
-| `schemas/events/webtransport.stream.receive.schema.json` | schema | `dd20d55fe0da` |
+| `schemas/events/webtransport.stream.receive.schema.json` | schema | `15eb7bdaa8f4` |
 | `schemas/events/webtransport.stream.reset.schema.json` | schema | `fc21cb3b6a0f` |
-| `schemas/events/webtransport.stream.send.schema.json` | schema | `056fcd815163` |
+| `schemas/events/webtransport.stream.send.schema.json` | schema | `4d766df1e9f1` |
 | `schemas/events/webtransport.stream.stop_sending.schema.json` | schema | `9504fa51a954` |
 | `schemas/exchanges.schema.json` | schema | `45134196417e` |
 | `schemas/extensions.schema.json` | schema | `132fed861e37` |

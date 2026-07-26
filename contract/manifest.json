@@ -219,7 +219,7 @@
     },
     {
       "path": "schemas/events/webtransport.stream.receive.schema.json",
-      "sha256": "dd20d55fe0dae710601f5aa05f663d27334daa687570f505c815f2ddba645970"
+      "sha256": "15eb7bdaa8f47e11edc34816c0810764d9cf606e6f2cc1ab1a911053424f0223"
     },
     {
       "path": "schemas/events/webtransport.stream.reset.schema.json",
@@ -227,7 +227,7 @@
     },
     {
       "path": "schemas/events/webtransport.stream.send.schema.json",
-      "sha256": "056fcd815163fb6d783b84f1b18229ceae7c9905d9a544e7a18bba591a967048"
+      "sha256": "4d766df1e9f102a9e944e070259fe1a66be26bdfaa02349d79209779974a401a"
     },
     {
       "path": "schemas/events/webtransport.stream.stop_sending.schema.json",

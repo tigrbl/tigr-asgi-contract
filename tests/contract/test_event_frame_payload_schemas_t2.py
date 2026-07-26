@@ -85,6 +85,26 @@ def test_stream_events_reject_missing_invalid_or_cross_lane_discriminators() -> 
     )
     assert "stream_direction_required" in invalid_direction
 
+    receive_wrong_way = event_payload_schema_errors(
+        "webtransport.stream.receive",
+        {
+            "type": "webtransport.stream.receive",
+            "stream_id": 1,
+            "stream_direction": "server_to_client",
+        },
+    )
+    assert "stream_direction_not_allowed_for_event" in receive_wrong_way
+
+    send_wrong_way = event_payload_schema_errors(
+        "webtransport.stream.send",
+        {
+            "type": "webtransport.stream.send",
+            "stream_id": 1,
+            "stream_direction": "client_to_server",
+        },
+    )
+    assert "stream_direction_not_allowed_for_event" in send_wrong_way
+
     cross_lane = event_payload_schema_errors(
         "webtransport.stream.send",
         {

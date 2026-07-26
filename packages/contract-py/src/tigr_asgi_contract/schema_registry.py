@@ -62,6 +62,10 @@ FRAME_SCHEMA_IDS = frozenset(FRAME_PAYLOAD_SCHEMA_PATHS)
 
 _FRAMINGS = frozenset({"json", "jsonrpc", "ndjson", "sse", "text", "bytes", "binary"})
 _STREAM_DIRECTIONS = frozenset({"bidi", "client_to_server", "server_to_client"})
+_EVENT_STREAM_DIRECTIONS = {
+    "webtransport.stream.receive": frozenset({"bidi", "client_to_server"}),
+    "webtransport.stream.send": frozenset({"bidi", "server_to_client"}),
+}
 _EVENTS_REQUIRING_JSONRPC_COMPLETION = frozenset(
     {
         "http.request",
@@ -198,9 +202,12 @@ def event_payload_schema_errors(event_type: str, event: dict[str, Any]) -> list[
     if ".stream." in event_type:
         if not _has_unit_id(event.get("stream_id")):
             errors.append("stream_id_required")
-        if event_type in {"webtransport.stream.receive", "webtransport.stream.send"}:
-            if event.get("stream_direction") not in _STREAM_DIRECTIONS:
+        if event_type in _EVENT_STREAM_DIRECTIONS:
+            stream_direction = event.get("stream_direction")
+            if stream_direction not in _STREAM_DIRECTIONS:
                 errors.append("stream_direction_required")
+            elif stream_direction not in _EVENT_STREAM_DIRECTIONS[event_type]:
+                errors.append("stream_direction_not_allowed_for_event")
         if "datagram_id" in event:
             errors.append("datagram_field_not_allowed_on_stream_event")
     elif "stream_id" in event or "stream_direction" in event:
