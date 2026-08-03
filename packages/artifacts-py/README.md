@@ -19,7 +19,7 @@ Canonical Python artifact package for the Tigr ASGI contract. This package ships
 | `capabilities.yaml` | registry | `8ca0167eccbc` |
 | `channels.yaml` | registry | `66a6a3b36551` |
 | `compatibility.yaml` | registry | `9a95660a96e8` |
-| `completion.yaml` | registry | `a1b38e52c5e8` |
+| `completion.yaml` | registry | `9d12d80a74b0` |
 | `directions.yaml` | registry | `5b3e8f536f80` |
 | `event_classification.yaml` | registry | `fbfe4cc8e0eb` |
 | `exchanges.yaml` | registry | `efc32610dfb1` |
@@ -52,8 +52,8 @@ Canonical Python artifact package for the Tigr ASGI contract. This package ships
 | `schemas/events/stream.resume.accept.schema.json` | schema | `0a601bcc0345` |
 | `schemas/events/stream.resume.reject.schema.json` | schema | `05b65ef2c460` |
 | `schemas/events/stream.resume.request.schema.json` | schema | `9afe3c7aca79` |
-| `schemas/events/transport.emit.complete.schema.json` | schema | `154aad5d68c0` |
-| `schemas/events/transport.emit.failed.schema.json` | schema | `d501f202757c` |
+| `schemas/events/transport.emit.complete.schema.json` | schema | `09afe7516df8` |
+| `schemas/events/transport.emit.failed.schema.json` | schema | `db8a04430d77` |
 | `schemas/events/websocket.accept.schema.json` | schema | `eb7eceeb6aeb` |
 | `schemas/events/websocket.close.schema.json` | schema | `1b093c67bdc8` |
 | `schemas/events/websocket.connect.schema.json` | schema | `de9333a842b2` |
@@ -64,12 +64,12 @@ Canonical Python artifact package for the Tigr ASGI contract. This package ships
 | `schemas/events/webtransport.close.schema.json` | schema | `efd59a3d1c08` |
 | `schemas/events/webtransport.connect.schema.json` | schema | `8faa5332a687` |
 | `schemas/events/webtransport.datagram.receive.schema.json` | schema | `36318243e42d` |
-| `schemas/events/webtransport.datagram.send.schema.json` | schema | `5e5bb8220d54` |
+| `schemas/events/webtransport.datagram.send.schema.json` | schema | `ed0a5c9de813` |
 | `schemas/events/webtransport.disconnect.schema.json` | schema | `8df0b9ea2978` |
 | `schemas/events/webtransport.stream.close.schema.json` | schema | `cbe00704dba3` |
 | `schemas/events/webtransport.stream.receive.schema.json` | schema | `15eb7bdaa8f4` |
 | `schemas/events/webtransport.stream.reset.schema.json` | schema | `fc21cb3b6a0f` |
-| `schemas/events/webtransport.stream.send.schema.json` | schema | `4d766df1e9f1` |
+| `schemas/events/webtransport.stream.send.schema.json` | schema | `b1776138b255` |
 | `schemas/events/webtransport.stream.stop_sending.schema.json` | schema | `9504fa51a954` |
 | `schemas/exchanges.schema.json` | schema | `45134196417e` |
 | `schemas/extensions.schema.json` | schema | `132fed861e37` |

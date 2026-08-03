@@ -24,15 +24,16 @@
         }
       ]
     },
-    "framing": {
+    "emit_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "completion_level": {
       "enum": [
-        "json",
-        "jsonrpc",
-        "ndjson",
-        "sse",
-        "text",
-        "bytes",
-        "binary"
+        "accepted_by_runtime",
+        "queued_for_transport",
+        "flushed_to_transport",
+        "peer_acknowledged"
       ]
     },
     "headers": {
@@ -88,6 +89,17 @@
     },
     "type": {
       "const": "webtransport.stream.send"
+    },
+    "framing": {
+      "enum": [
+        "json",
+        "jsonrpc",
+        "ndjson",
+        "sse",
+        "text",
+        "bytes",
+        "binary"
+      ]
     }
   },
   "required": [

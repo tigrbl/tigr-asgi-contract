@@ -6,3 +6,6 @@ levels:
   failed_during_emit: emit failed before the requested semantic completion
   aborted_by_peer: peer aborted the operation before completion could be observed
 default: flushed_to_transport
+correlation:
+  field: emit_id
+  description: application supplied identifier correlating a send request with completion or failure

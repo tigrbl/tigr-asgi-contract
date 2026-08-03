@@ -1,100 +1,130 @@
 {
-  "$id": "https://tigr.dev/asgi-contract/schemas/events/transport.emit.failed.schema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "additionalProperties": true,
-  "not": {
-    "required": [
-      "subsurface"
-    ]
-  },
-  "properties": {
-    "body": {},
-    "bytes": {},
-    "code": {
-      "type": "integer"
-    },
-    "datagram_id": {
-      "oneOf": [
-        {
-          "type": "integer"
-        },
-        {
-          "minLength": 1,
-          "type": "string"
-        }
-      ]
-    },
-    "framing": {
-      "enum": [
-        "json",
-        "jsonrpc",
-        "ndjson",
-        "sse",
-        "text",
-        "bytes",
-        "binary"
-      ]
-    },
-    "headers": {
-      "type": "array"
-    },
-    "jsonrpc_complete": {
-      "type": "boolean"
-    },
-    "message": {
-      "type": "string"
-    },
-    "more": {
-      "type": "boolean"
-    },
-    "more_body": {
-      "type": "boolean"
-    },
-    "path": {
-      "minLength": 1,
-      "type": "string"
-    },
-    "reason": {
-      "type": "string"
-    },
-    "session_id": {
-      "minLength": 1,
-      "type": "string"
-    },
-    "status": {
-      "maximum": 999,
-      "minimum": 100,
-      "type": "integer"
-    },
-    "stream_direction": {
-      "enum": [
-        "bidi",
-        "client_to_server",
-        "server_to_client"
-      ]
-    },
-    "stream_id": {
-      "oneOf": [
-        {
-          "type": "integer"
-        },
-        {
-          "minLength": 1,
-          "type": "string"
-        }
-      ]
-    },
-    "text": {
-      "type": "string"
-    },
-    "type": {
-      "const": "transport.emit.failed"
-    }
-  },
-  "required": [
-    "type",
-    "message"
-  ],
-  "title": "transport.emit.failed event payload",
-  "type": "object"
+    "$id":  "https://tigr.dev/asgi-contract/schemas/events/transport.emit.failed.schema.json",
+    "$schema":  "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties":  true,
+    "not":  {
+                "required":  [
+                                 "subsurface"
+                             ]
+            },
+    "properties":  {
+                       "body":  {
+
+                                },
+                       "bytes":  {
+
+                                 },
+                       "code":  {
+                                    "type":  "integer"
+                                },
+                       "datagram_id":  {
+                                           "oneOf":  [
+                                                         {
+                                                             "type":  "integer"
+                                                         },
+                                                         {
+                                                             "minLength":  1,
+                                                             "type":  "string"
+                                                         }
+                                                     ]
+                                       },
+                       "emit_id":  {
+                                       "minLength":  1,
+                                       "type":  "string"
+                                   },
+                       "level":  {
+                                     "enum":  [
+                                                  "accepted_by_runtime",
+                                                  "queued_for_transport",
+                                                  "flushed_to_transport",
+                                                  "peer_acknowledged",
+                                                  "failed_during_emit",
+                                                  "aborted_by_peer"
+                                              ]
+                                 },
+                       "headers":  {
+                                       "type":  "array"
+                                   },
+                       "jsonrpc_complete":  {
+                                                "type":  "boolean"
+                                            },
+                       "message":  {
+                                       "type":  "string"
+                                   },
+                       "more":  {
+                                    "type":  "boolean"
+                                },
+                       "more_body":  {
+                                         "type":  "boolean"
+                                     },
+                       "path":  {
+                                    "minLength":  1,
+                                    "type":  "string"
+                                },
+                       "reason":  {
+                                      "type":  "string"
+                                  },
+                       "session_id":  {
+                                          "minLength":  1,
+                                          "type":  "string"
+                                      },
+                       "stream_direction":  {
+                                                "enum":  [
+                                                             "bidi",
+                                                             "client_to_server",
+                                                             "server_to_client"
+                                                         ]
+                                            },
+                       "stream_id":  {
+                                         "oneOf":  [
+                                                       {
+                                                           "type":  "integer"
+                                                       },
+                                                       {
+                                                           "minLength":  1,
+                                                           "type":  "string"
+                                                       }
+                                                   ]
+                                     },
+                       "text":  {
+                                    "type":  "string"
+                                },
+                       "type":  {
+                                    "const":  "transport.emit.failed"
+                                },
+                       "framing":  {
+                                       "enum":  [
+                                                    "json",
+                                                    "jsonrpc",
+                                                    "ndjson",
+                                                    "sse",
+                                                    "text",
+                                                    "bytes",
+                                                    "binary"
+                                                ]
+                                   },
+                       "failure_phase":  {
+                                             "minLength":  1,
+                                             "type":  "string"
+                                         },
+                       "retryable":  {
+                                         "type":  "boolean"
+                                     },
+                       "status":  {
+                                      "enum":  [
+                                                   "ok",
+                                                   "rejected",
+                                                   "failed"
+                                               ]
+                                  }
+                   },
+    "required":  [
+                     "type",
+                     "emit_id",
+                     "level",
+                     "message",
+                     "status"
+                 ],
+    "title":  "transport.emit.failed event payload",
+    "type":  "object"
 }
