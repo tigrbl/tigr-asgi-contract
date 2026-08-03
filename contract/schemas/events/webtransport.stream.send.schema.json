@@ -105,7 +105,8 @@
   "required": [
     "type",
     "stream_id",
-    "stream_direction"
+    "stream_direction",
+    "more"
   ],
   "title": "webtransport.stream.send event payload",
   "type": "object"

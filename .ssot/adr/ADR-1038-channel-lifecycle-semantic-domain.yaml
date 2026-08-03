@@ -1,4 +1,4 @@
-schema_version: "0.2.0"
+schema_version: "0.8.0"
 kind: "adr"
 id: "adr:1038"
 number: 1038
@@ -16,6 +16,10 @@ status_notes:
     at: "2026-06-14T07:38:44Z"
     note: "Accepted for lifecycle semantic ownership split."
     status: "accepted"
+  -
+    status: "accepted"
+    note: "Clarified by adr:1047: application-record completion is independent of WebTransport stream termination."
+    at: "2026-08-03T21:48:21Z"
 references: []
 body: |-
   Decision: tigr-asgi-contract owns protocol-neutral channel_lifecycle semantics and RFC target projection vocabulary. The target map covers HTTP/2 RFC 9113 stream states and shutdown, HTTP/3 RFC 9114 request cancellation and shutdown, QUIC RFC 9000 stream and connection close behavior, and WebSocket tunnel lifecycle only through RFC 8441 and RFC 9220 when the surface is a WebSocket tunnel. HTTP/2 half-closed local and remote, HTTP/3 request stream closure, and QUIC send and receive stream termination are mapped into read_closed, write_closed, closing, closed, failed, and lost without embedding protocol mechanics in application consumers.

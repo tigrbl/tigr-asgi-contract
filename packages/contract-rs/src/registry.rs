@@ -276,7 +276,8 @@ pub const EVENT_CLASSIFICATIONS_JSON: &str = r#"[
     ],
     "required_payload_fields": [
       "stream_id",
-      "stream_direction"
+      "stream_direction",
+      "more"
     ],
     "capability_gates": [
       "supports_bidi_streams"
@@ -301,7 +302,8 @@ pub const EVENT_CLASSIFICATIONS_JSON: &str = r#"[
     ],
     "required_payload_fields": [
       "stream_id",
-      "stream_direction"
+      "stream_direction",
+      "more"
     ],
     "capability_gates": [
       "supports_uni_streams"
@@ -326,7 +328,8 @@ pub const EVENT_CLASSIFICATIONS_JSON: &str = r#"[
     ],
     "required_payload_fields": [
       "stream_id",
-      "stream_direction"
+      "stream_direction",
+      "more"
     ],
     "capability_gates": [
       "supports_bidi_streams"
@@ -350,7 +353,8 @@ pub const EVENT_CLASSIFICATIONS_JSON: &str = r#"[
     ],
     "required_payload_fields": [
       "stream_id",
-      "stream_direction"
+      "stream_direction",
+      "more"
     ],
     "capability_gates": [
       "supports_uni_streams"

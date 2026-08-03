@@ -1,4 +1,4 @@
-schema_version: "0.2.0"
+schema_version: "0.8.0"
 kind: "spec"
 id: "spc:1035"
 number: 1035
@@ -17,9 +17,9 @@ status_notes:
     note: "Updated WebTransport lane semantics for bidi unidi and datagram classification."
     status: "accepted"
   -
-    status: "accepted"
-    note: "Updated WebTransport semantics with lane-local framing rules."
     at: "2026-05-27T18:11:10Z"
+    note: "Updated WebTransport semantics with lane-local framing rules."
+    status: "accepted"
 references: []
 body: |-
   ## Scope
@@ -66,3 +66,4 @@ adr_ids:
   - "adr:1032"
   - "adr:1036"
   - "adr:1037"
+  - "adr:1047"

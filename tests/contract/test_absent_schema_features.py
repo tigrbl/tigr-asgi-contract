@@ -72,8 +72,9 @@ def test_event_schema_dispatch_uses_canonical_type_discriminator() -> None:
     payload = {
         "type": "webtransport.stream.receive",
         "stream_id": 7,
-        "stream_direction": "bidi",
-        "body": "chunk",
+            "stream_direction": "bidi",
+            "body": "chunk",
+            "more": True,
     }
     assert event_payload_schema_path_for_payload(payload) == (
         "contract/schemas/events/webtransport.stream.receive.schema.json"

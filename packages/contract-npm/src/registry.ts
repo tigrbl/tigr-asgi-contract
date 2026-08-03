@@ -1429,7 +1429,8 @@ export const EVENT_CLASSIFICATIONS = [
     ],
     "required_payload_fields": [
       "stream_id",
-      "stream_direction"
+      "stream_direction",
+      "more"
     ],
     "capability_gates": [
       "supports_bidi_streams"
@@ -1454,7 +1455,8 @@ export const EVENT_CLASSIFICATIONS = [
     ],
     "required_payload_fields": [
       "stream_id",
-      "stream_direction"
+      "stream_direction",
+      "more"
     ],
     "capability_gates": [
       "supports_uni_streams"
@@ -1479,7 +1481,8 @@ export const EVENT_CLASSIFICATIONS = [
     ],
     "required_payload_fields": [
       "stream_id",
-      "stream_direction"
+      "stream_direction",
+      "more"
     ],
     "capability_gates": [
       "supports_bidi_streams"
@@ -1503,7 +1506,8 @@ export const EVENT_CLASSIFICATIONS = [
     ],
     "required_payload_fields": [
       "stream_id",
-      "stream_direction"
+      "stream_direction",
+      "more"
     ],
     "capability_gates": [
       "supports_uni_streams"

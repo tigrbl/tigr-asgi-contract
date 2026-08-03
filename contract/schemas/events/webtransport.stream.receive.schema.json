@@ -93,7 +93,8 @@
   "required": [
     "type",
     "stream_id",
-    "stream_direction"
+    "stream_direction",
+    "more"
   ],
   "title": "webtransport.stream.receive event payload",
   "type": "object"

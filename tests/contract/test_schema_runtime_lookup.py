@@ -51,6 +51,7 @@ def test_runtime_event_payload_schema_validation() -> None:
             "type": "webtransport.stream.receive",
             "stream_id": 1,
             "stream_direction": "client_to_server",
+            "more": True,
         },
     )
     assert not validate_event_payload_schema(

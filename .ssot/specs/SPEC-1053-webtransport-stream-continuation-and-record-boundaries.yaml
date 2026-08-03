@@ -1,0 +1,24 @@
+schema_version: "0.8.0"
+kind: "spec"
+id: "spc:1053"
+number: 1053
+slug: "webtransport-stream-continuation-and-record-boundaries"
+title: "WebTransport stream continuation and record-boundary semantics"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "WebTransport stream continuation is independent of application-record completion. Stream send and receive events carry explicit continuation state. JSON-RPC over a persistent stream uses a declared uint32 big-endian length prefix, supports fragmented and coalesced records, enforces a bounded record size before allocation, and rejects an incomplete terminal record. A complete record may be emitted while the stream remains open."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    status: "accepted"
+    note: "Implemented by canonical schemas, registries, and cross-language projections."
+    at: "2026-08-03T22:24:37Z"
+references: []
+body: |-
+  WebTransport stream continuation is independent of application-record completion. Stream send and receive events carry explicit continuation state. JSON-RPC over a persistent stream uses a declared uint32 big-endian length prefix, supports fragmented and coalesced records, enforces a bounded record size before allocation, and rejects an incomplete terminal record. A complete record may be emitted while the stream remains open.
+spec_kind: "normative"
+adr_ids:
+  - "adr:1047"

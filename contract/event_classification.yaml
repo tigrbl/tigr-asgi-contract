@@ -178,7 +178,7 @@ event_classifications:
   exchange: duplex
   direction: client_to_server
   allowed_framings: [json, jsonrpc, ndjson, text, bytes, binary]
-  required_payload_fields: [stream_id, stream_direction]
+  required_payload_fields: [stream_id, stream_direction, more]
   capability_gates: [supports_bidi_streams]
   stream_direction: bidi
 - event: webtransport.stream.receive
@@ -189,7 +189,7 @@ event_classifications:
   exchange: client_stream
   direction: client_to_server
   allowed_framings: [json, jsonrpc, ndjson, text, bytes, binary]
-  required_payload_fields: [stream_id, stream_direction]
+  required_payload_fields: [stream_id, stream_direction, more]
   capability_gates: [supports_uni_streams]
   stream_direction: client_to_server
 - event: webtransport.stream.send
@@ -200,7 +200,7 @@ event_classifications:
   exchange: duplex
   direction: server_to_client
   allowed_framings: [json, jsonrpc, ndjson, text, bytes, binary]
-  required_payload_fields: [stream_id, stream_direction]
+  required_payload_fields: [stream_id, stream_direction, more]
   capability_gates: [supports_bidi_streams]
   stream_direction: bidi
 - event: webtransport.stream.send
@@ -211,7 +211,7 @@ event_classifications:
   exchange: server_stream
   direction: server_to_client
   allowed_framings: [json, ndjson, text, bytes, binary]
-  required_payload_fields: [stream_id, stream_direction]
+  required_payload_fields: [stream_id, stream_direction, more]
   capability_gates: [supports_uni_streams]
   stream_direction: server_to_client
 - event: webtransport.stream.close

@@ -35,7 +35,7 @@
     },
     {
       "path": "event_classification.yaml",
-      "sha256": "fbfe4cc8e0eb892b1e9e43780a44a800bf6b595e93cbd12b400a459f9891d46d"
+      "sha256": "a1a1c09b20e536fc01fc16a7d0d5f040c09f7267b22f175109b243bd6939358c"
     },
     {
       "path": "exchanges.yaml",
@@ -219,7 +219,7 @@
     },
     {
       "path": "schemas/events/webtransport.stream.receive.schema.json",
-      "sha256": "15eb7bdaa8f47e11edc34816c0810764d9cf606e6f2cc1ab1a911053424f0223"
+      "sha256": "35a98b9f4878a08bad6d48ee216b97c3a3295b2217246bba0a3d9cb79a6fd227"
     },
     {
       "path": "schemas/events/webtransport.stream.reset.schema.json",
@@ -227,7 +227,7 @@
     },
     {
       "path": "schemas/events/webtransport.stream.send.schema.json",
-      "sha256": "b1776138b2550279b92e1f2dd78265c10a2bc93ddaa1020acedac36bb87ef339"
+      "sha256": "6105adf6400e302fb70cf32bf0e05fd73e1df80cd2bdea32ab42a95d80f9f892"
     },
     {
       "path": "schemas/events/webtransport.stream.stop_sending.schema.json",

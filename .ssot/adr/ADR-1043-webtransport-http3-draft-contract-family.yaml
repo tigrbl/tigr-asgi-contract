@@ -13,9 +13,13 @@ supersedes: []
 superseded_by: []
 status_notes:
   -
-    status: "accepted"
-    note: "Accepted to govern the stack boundary before per-stack specs and features are added."
     at: "2026-06-17T12:41:23Z"
+    note: "Accepted to govern the stack boundary before per-stack specs and features are added."
+    status: "accepted"
+  -
+    status: "accepted"
+    note: "Clarified by adr:1047: WebTransport stream FIN requires explicit carrier termination intent."
+    at: "2026-08-03T21:48:24Z"
 references: []
 body: |-
   Decision: tigr-asgi-contracts models WebTransport over HTTP/3 as a separate draft-target session, stream, and datagram contract family, not as generic HTTP/3 or WebSocket behavior.

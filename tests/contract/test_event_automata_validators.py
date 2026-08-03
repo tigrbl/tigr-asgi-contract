@@ -62,7 +62,10 @@ def test_generated_automata_accept_standard_lifecycle_outcomes() -> None:
 def test_generated_event_payload_validator() -> None:
     assert validate_event_payload("http.response.pathsend", {"path": "/tmp/file.bin"})
     assert not validate_event_payload("http.response.pathsend", {})
-    assert validate_event_payload("webtransport.stream.receive", {"stream_id": 7})
+    assert validate_event_payload(
+        "webtransport.stream.receive",
+        {"stream_id": 7, "stream_direction": "bidi", "more": True},
+    )
     assert not validate_event_payload("webtransport.stream.receive", {})
     assert validate_event_payload("webtransport.datagram.send", {"datagram_id": 9})
     assert not validate_event_payload("webtransport.datagram.send", {})

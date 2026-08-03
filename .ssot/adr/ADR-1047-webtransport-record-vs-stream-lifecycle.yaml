@@ -1,0 +1,21 @@
+schema_version: "0.8.0"
+kind: "adr"
+id: "adr:1047"
+number: 1047
+slug: "webtransport-record-vs-stream-lifecycle"
+title: "WebTransport record completion is independent of stream termination"
+status: "accepted"
+origin: "repo-local"
+decision_date: null
+tags: []
+summary: "A complete JSON-RPC or other application record is independent of WebTransport stream lifecycle. The more field is explicit carrier continuation state: true keeps the sending direction open and false terminates it with FIN. Absence must not default to termination. jsonrpc_complete and equivalent record-completion metadata never imply FIN. webtransport.stream.close remains the explicit stream lifecycle operation."
+supersedes: []
+superseded_by: []
+status_notes:
+  -
+    status: "accepted"
+    note: "Accepted with explicit continuation contract and passing contract tests."
+    at: "2026-08-03T22:24:35Z"
+references: []
+body: |-
+  A complete JSON-RPC or other application record is independent of WebTransport stream lifecycle. The more field is explicit carrier continuation state: true keeps the sending direction open and false terminates it with FIN. Absence must not default to termination. jsonrpc_complete and equivalent record-completion metadata never imply FIN. webtransport.stream.close remains the explicit stream lifecycle operation.

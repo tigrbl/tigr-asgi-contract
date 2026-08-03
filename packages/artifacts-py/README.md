@@ -21,7 +21,7 @@ Canonical Python artifact package for the Tigr ASGI contract. This package ships
 | `compatibility.yaml` | registry | `9a95660a96e8` |
 | `completion.yaml` | registry | `9d12d80a74b0` |
 | `directions.yaml` | registry | `5b3e8f536f80` |
-| `event_classification.yaml` | registry | `fbfe4cc8e0eb` |
+| `event_classification.yaml` | registry | `a1a1c09b20e5` |
 | `exchanges.yaml` | registry | `efc32610dfb1` |
 | `extensions.yaml` | registry | `7da670b74348` |
 | `families.yaml` | registry | `e8a62db0c0ff` |
@@ -67,9 +67,9 @@ Canonical Python artifact package for the Tigr ASGI contract. This package ships
 | `schemas/events/webtransport.datagram.send.schema.json` | schema | `ed0a5c9de813` |
 | `schemas/events/webtransport.disconnect.schema.json` | schema | `8df0b9ea2978` |
 | `schemas/events/webtransport.stream.close.schema.json` | schema | `cbe00704dba3` |
-| `schemas/events/webtransport.stream.receive.schema.json` | schema | `15eb7bdaa8f4` |
+| `schemas/events/webtransport.stream.receive.schema.json` | schema | `35a98b9f4878` |
 | `schemas/events/webtransport.stream.reset.schema.json` | schema | `fc21cb3b6a0f` |
-| `schemas/events/webtransport.stream.send.schema.json` | schema | `b1776138b255` |
+| `schemas/events/webtransport.stream.send.schema.json` | schema | `6105adf6400e` |
 | `schemas/events/webtransport.stream.stop_sending.schema.json` | schema | `9504fa51a954` |
 | `schemas/exchanges.schema.json` | schema | `45134196417e` |
 | `schemas/extensions.schema.json` | schema | `132fed861e37` |

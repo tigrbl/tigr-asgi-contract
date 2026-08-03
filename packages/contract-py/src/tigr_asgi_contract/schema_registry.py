@@ -210,6 +210,11 @@ def event_payload_schema_errors(event_type: str, event: dict[str, Any]) -> list[
                 errors.append("stream_direction_not_allowed_for_event")
         if "datagram_id" in event:
             errors.append("datagram_field_not_allowed_on_stream_event")
+        if event_type in {
+            "webtransport.stream.receive",
+            "webtransport.stream.send",
+        } and not isinstance(event.get("more"), bool):
+            errors.append("stream_continuation_required")
     elif "stream_id" in event or "stream_direction" in event:
         errors.append("stream_field_not_allowed_on_non_stream_event")
     if ".datagram." in event_type:
