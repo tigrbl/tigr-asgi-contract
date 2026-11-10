@@ -223,6 +223,7 @@ jobs:
         with:
           publish-mode: trusted
           working-directory: packages/artifacts-rs
+          package: tigr_asgi_contract_artifacts_rs
           allow-dirty: 'true'
           no-verify: 'true'
           skip-existing: 'true'
@@ -231,6 +232,7 @@ jobs:
         with:
           publish-mode: trusted
           working-directory: packages/contract-rs
+          package: tigr_asgi_contract_rs
           allow-dirty: 'true'
           no-verify: 'true'
           skip-existing: 'true'
